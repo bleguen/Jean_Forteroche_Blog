@@ -1,0 +1,1 @@
+<!-- Le controleur fait appel aux modèles, prend la décision et renvoie les infos aux views -->

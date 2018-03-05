@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><?php $title ?></title>
+    <title><?= $title ?></title>
     <!-- Lien vers le CSS -->
     <link rel="stylesheet" src="../public/css/style.css"/>
     <!-- Script jQuery + BootStrap -->
@@ -46,10 +46,8 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown">
                             Chapitre
                         </a>
-                        <div class="dropdown-menu"> <?php /*while(){}*/?>
-                            <a class="dropdown-item" href="#">Chapitre 1</a>
-                            <a class="dropdown-item" href="#">Chapitre 2</a>
-                            <a class="dropdown-item" href="#">Chapitre 3</a>
+                        <div class="dropdown-menu"> 
+                            <?= $lien ?>
                         </div>
                     </li>
                     
@@ -102,5 +100,6 @@
         </nav>
     </div>
     </header>
+    <?= $content ?>
 </body>
 </html>

@@ -3,4 +3,8 @@
 <?php 
 require('controller/controller.php');
 
-listChapters();
+if(isset($_GET['id'])){
+    chapter($_GET['id']);
+} else {
+    listChapters();
+}

@@ -1,0 +1,1 @@
+browser-sync start --proxy "localhost/jean_forteroche_blog" --files "public/css/*.css, public/js/*.js, view/*.php "

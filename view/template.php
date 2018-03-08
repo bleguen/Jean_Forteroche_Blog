@@ -13,6 +13,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
     <!-- Meta OG et Twitter -->
     <meta property="og:title" content="Jean Forteroche Blog">
     <meta property="og:type" content="Website">
@@ -32,7 +33,7 @@
     <header>
     <div class="container-fluid">
         <nav class="navbar navbar-expand-md navbar-dark bg-dark ">
-            <a class="navbar-brand" href="#">Jean Forteroche</a>
+            <a class="navbar-brand" href="http://localhost/jean_forteroche_blog/index.php">Jean Forteroche</a>
             <!-- Toggler/collapsibe Button -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarList">
                 <span class="navbar-toggler-icon"></span>
@@ -40,22 +41,33 @@
             <div class="collapse navbar-collapse"  id="navbarList">
                 <ul class="navbar-nav m-md-auto collapse">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Accueil</a>
+                        <a class="nav-link" href="http://localhost/jean_forteroche_blog/index.php">Accueil</a>
                     </li>
                     <li class="nav-item dropdown ">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown">
                             Chapitre
                         </a>
                         <div class="dropdown-menu"> 
-                            <?= $lien ?>
+                        <?php
+                            require_once('model/chapter_model.php');
+
+                            $chapterManager = new ChapterManager();
+                            $chapters = $chapterManager->getAllChapters();
+                            while($data = $chapters->fetch()) {
+                        ?>
+                            <a class="dropdown-item" href="index.php?action=get&amp;id=<?=$data['id'] ?>"> <?= htmlspecialchars($data['title']) ?></a>
+                        <?php
+                            }
+                        ?>
                         </div>
                     </li>
-                    
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
                     <?php if(false) {
                         echo "<li class='nav-item '> <p>Bienvenue à toi mon ami</p></li>";
                     } else {
                         echo "<li class='nav-item'>
-                                <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#connectModal'> Connexion </button>
+                                <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#connectModal'><i class='fas fa-sign-in-alt'></i> Login</button>
                              </li>
 
                             <!-- The Modal -->
@@ -95,6 +107,7 @@
                                     </div>
                                 </div>";
                     } ?>
+                    
                 </ul>
             </div>
         </nav>

@@ -11,7 +11,9 @@ function listChapters() {
     require('view/chapters.php');
 }
 
-function chapter() {
+function chapter($id) {
+    $chapterManager = new ChapterManager();
+    $chapter = $chapterManager->getChapter($id);
 
     require('view/uniqueChapter.php');
 }

@@ -1,13 +1,6 @@
 <!-- Fichier appeler pour faire afficher à l'écran utilisateur la page d'accueil soit celle ou l'on voit tout les articles etc -->
 
-<?php $title = 'Mes chapitres' ?>
-
-<?php 
-    while($data = $chapters->fetch()) {
-     $lien = '<a class="dropdown-item" href="#"> ' . htmlspecialchars($data['title']) .'</a>'; 
-    }
-    $chapters->closeCursor();
-?>
+<?php $title = 'Jean Forteroche Blog Alaska' ?>
 
 <?php ob_start(); ?>
 <!-- Haut de page -->
@@ -23,9 +16,10 @@ while($data = $chapters->fetch()) {
     <div class="col-md-6">
     <div class="card">
         <img class="card-img" src="<?= htmlspecialchars($data['chapter_img']) ?>" alt="Card image cap">
-            <div class="card-body">
+            <div class="card-img-overlay text-white d-flex flex-column justify-content-end">
                 <h5 class="card-title"><?= htmlspecialchars($data['title']) ?></h5>
-                <p> le : <?= htmlspecialchars($data['chapter_date_fr']) ?></p>
+                <p class="card-text"> le : <?= htmlspecialchars($data['chapter_date_fr']) ?></p>
+                <a  class="card-text" href='index.php?action=get&amp;id=<?=$data['id'] ?>'>Liens vers l'article</a>
             </div>
     </div>
     </div>

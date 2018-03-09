@@ -49,7 +49,7 @@
                         </a>
                         <div class="dropdown-menu"> 
                         <?php
-                            require_once('model/chapter_model.php');
+                            require_once('model/ChapterManager.php');
 
                             $chapterManager = new ChapterManager();
                             $chapters = $chapterManager->getAllChapters();

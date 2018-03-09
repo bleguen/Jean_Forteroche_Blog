@@ -3,8 +3,10 @@
 <?php 
 require('controller/controller.php');
 
+$controller = new Controller();
+
 if(isset($_GET['id'])){
-    chapter($_GET['id']);
+    $controller->chapter($_GET['id']);
 } else {
-    listChapters();
+    $controller->listChapters();
 }

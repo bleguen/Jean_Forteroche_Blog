@@ -14,14 +14,15 @@
 while($data = $chapters->fetch()) {
     ?>
     <div class="col-md-6">
-    <div class="card">
-        <img class="card-img" src="<?= htmlspecialchars($data['chapter_img']) ?>" alt="Card image cap">
-            <div class="card-img-overlay text-white d-flex flex-column justify-content-end">
-                <h5 class="card-title"><?= htmlspecialchars($data['title']) ?></h5>
-                <p class="card-text"> le : <?= htmlspecialchars($data['chapter_date_fr']) ?></p>
-                <a  class="card-text" href='index.php?action=get&amp;id=<?=$data['id'] ?>'>Liens vers l'article</a>
+        <a  class="card-text" href='index.php?action=get&amp;id=<?=$data['id'] ?>'>
+            <div class="card">
+                <img class="card-img" src="<?= htmlspecialchars($data['chapter_img']) ?>" alt="Card image cap">
+                    <div class="card-img-overlay text-white d-flex flex-column justify-content-end">
+                        <h4 class="card-title"><?= htmlspecialchars($data['title']) ?></h4>
+                        <p class="card-text"> le : <?= htmlspecialchars($data['chapter_date_fr']) ?></p>
+                    </div>
             </div>
-    </div>
+        </a>
     </div>
     <?php 
 }

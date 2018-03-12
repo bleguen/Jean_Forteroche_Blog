@@ -64,9 +64,11 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                     <?php 
-                    $connected = false;
-                    if($connected == true) {
-                        echo "<li class='nav-item '> <p>Bienvenue à toi mon ami "  . htmlspecialchars($_SESSION['username']). "</p></li>";
+                    if(isset($_SESSION['username'])) {
+                        echo "<li class='nav-item '> <p>Bienvenue à toi mon ami "  . htmlspecialchars($_SESSION['username']). "</p></li>
+                              <li class='nav-item'>
+                                <p><a href='index.php?action=logout' title='Déconnexion'>Se déconnecter</a></p>
+                              </li>";
                     } else {
                         echo "<li class='nav-item'>
                                 <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#connectModal'><i class='fas fa-sign-in-alt'></i> Login</button>

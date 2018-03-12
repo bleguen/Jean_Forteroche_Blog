@@ -4,7 +4,6 @@
 
 session_start();
 
-
 require('controller/controller.php');
 
 $controller = new Controller();
@@ -47,7 +46,8 @@ try {
             
         } elseif($_GET['action'] == 'connection') {
             $controller->connection($_POST['username'], $_POST['passwordHash']);
-
+        } elseif ((isset($_GET['action'])) && ($_GET['action'] == 'logout')) {
+           $controller->deconnection();
         } else {
             echo "erreur";
         }

@@ -49,22 +49,27 @@ class Controller {
 
     public function connection($username) {
         $user = $this->usersManager->getUser($username);
-        echo var_dump($_POST['passwordHash']);
-        echo var_dump($user['passwordHash']);
+        var_dump($_POST['passwordHash']);
+        var_dump($user['passwordHash']);
         $isPasswordCorrect = password_verify($_POST['passwordHash'], $user['passwordHash']);
         
-        echo var_dump($isPasswordCorrect);
+        var_dump($isPasswordCorrect);
 
         if($isPasswordCorrect) {
-            echo 'je suis la';
             $_SESSION['username'] = $user['username'];
-            $connected = true;
-            //header('location: index.php');
+            header('location: index.php');
+            
         } else {
             echo 'Erreur : ';
-        }
-    
-        
+        } 
+    }
+
+    public function deconnection() {
+         // Destruction de la session ?
+         $_SESSION = array();
+         session_destroy();
+         session_start();
+         header('location: index.php');
     }
 }
 

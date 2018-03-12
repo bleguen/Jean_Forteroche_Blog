@@ -15,12 +15,12 @@ class CommentManager extends Manager {
         return $comments;
     }
 
-    public function postComment() {
+    public function postComment($id_Chapters, $id_Users, $comment_text ) {
         $db = $this->dbConnect();
-        $req = $db->prepare('INSERT INTO comments (id, id_Users, comment_text, id_Chapter, DATE_FORMAT(comment_date, \'%d/%m/%Y\'))');
-        $req->execute();
+        $req = $db->prepare("INSERT INTO comments (id_Chapters, id_Users, comment_text, comment_date) VALUES(?,?,?, NOW())");
+        $comments = $req->execute(array($id_Chapters, $id_Users, $comment_text ));
 
-        return $req;
+        return $comments;
     }
 }
 

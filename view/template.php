@@ -55,7 +55,7 @@
                             $chapters = $chapterManager->getAllChapters();
                             while($data = $chapters->fetch()) {
                         ?>
-                            <a class="dropdown-item" href="index.php?action=get&amp;id=<?=$data['id'] ?>"> <?= htmlspecialchars($data['title']) ?></a>
+                            <a class="dropdown-item" href="index.php?action=post&amp;id=<?=$data['id'] ?>"> <?= htmlspecialchars($data['title']) ?></a>
                         <?php
                             }
                         ?>
@@ -63,8 +63,10 @@
                     </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                    <?php if(false) {
-                        echo "<li class='nav-item '> <p>Bienvenue à toi mon ami</p></li>";
+                    <?php 
+                    $connected = false;
+                    if($connected == true) {
+                        echo "<li class='nav-item '> <p>Bienvenue à toi mon ami "  . htmlspecialchars($_SESSION['username']). "</p></li>";
                     } else {
                         echo "<li class='nav-item'>
                                 <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#connectModal'><i class='fas fa-sign-in-alt'></i> Login</button>
@@ -83,19 +85,23 @@
 
                                             <!-- Modal body -->
                                             <div class='modal-body'>
-                                                <form>
+                                                <form action='index.php?action=connection' method='post'>
                                                 <div>
                                                     <label>Identifiant :</label>
-                                                    <input type='text' />
+                                                    <input name='username' type='text' placeholder='Veuillez rentrer votre pseudo'/>
                                                 </div>
                                                 <div>
                                                     <label>Mot de passe :</label>
-                                                    <input type='password' />
+                                                    <input name='passwordHash' type='password' placeholder='Veuillez rentrer votre mot de passe'/>
                                                 </div>
                                                 <div>
                                                     <input class='btn btn-primary' type='submit' value='Valider' />
                                                 </div>
                                                 </form>
+                                                <div>
+                                                    <p>Vous n'etes pas encore inscris, venez ici</p>
+                                                    <a href='index.php?action=inscription'>Inscription</a>
+                                                </div>
                                             </div>
 
                                             <!-- Modal footer -->

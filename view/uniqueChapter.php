@@ -16,7 +16,7 @@
                 <img class="card-img" src="<?= htmlspecialchars($data['chapter_img']); ?>" alt="Card image cap">
                     <div class="card-body">
                         <p><?= htmlspecialchars($data['chapter_texte']); ?></p>
-                        <p> le : <?= htmlspecialchars($data['chapter_date_fr']); ?></p>
+                        <p> Posté le : <?= htmlspecialchars($data['chapter_date_fr']); ?></p>
                     </div>
             </div>
         </div>
@@ -33,6 +33,18 @@
             <?php endforeach;?>
         </div>
     </div>
+</section>
+<section class="container-fluid">
+    <h3>Ajouter un commentaire</h3>
+    <form action='index.php?action=addComment&amp;id=<?=$data['id'] ?>' method="post">
+        <textarea name="id_Chapters"  cols="1" rows="1" style=""><?= $data['id'] ?></textarea>
+        Votre pseudo :
+        <input name="id_Users" type="text" placeholder ="votre id">
+        Votre message :<br>
+        <input name="comment_text" type="textarea" placeholder="Votre message">
+        <p>ajouter un capcha</p>
+        <input type="submit" value="Submit">
+    </form>
 </section>
 
 <?php $content= ob_get_clean(); ?>

@@ -3,18 +3,25 @@
 require_once("model/manager.php");
 
 class UsersManager extends Manager {
-    public function getUser($userId) {
+
+    public function getUser($username) {
         $db = $this->dbConnect();
-        $req = $db->query('SELECT id, username, mail, password, DATE_FORMAT(inscription_date, \'%d/%m/%Y\') AS inscription_date_fr FROM users');
-        $req = execute(array($userId));
+        $req = $db->prepare("SELECT username, passwordHash  FROM users WHERE username =  '$username'");
+        $req->execute(array($username));
         $user = $req->fetch();
 
         return $user;
     }
     // A retravailler
-    public function postUser() {
+    public function postUser($username, $passwordHash, $mail) {
+
+        $passwordHash = password_hash($_POST['passwordHash'], PASSWORD_DEFAULT);
+
         $db = $this->dbConnect();
-        $req = $db->query('INSERT INTO comments (id, id_Users, comment_text, id_Chapter, DATE_FORMAT(comment_date, \'%d/%m/%Y\'))');
+        $user = $db->prepare('INSERT INTO users (username, passwordHash, mail, inscription_date) VALUES (?, ?, ?, CURDATE())');
+        $user->execute(array($username, $passwordHash, $mail));
+
+        return $user;
     }
 }
 

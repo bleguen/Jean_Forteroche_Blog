@@ -29,16 +29,15 @@ try {
         } elseif($_GET['action'] == 'inscription') {
             $controller->pageInscription();
         } elseif($_GET['action'] == 'addUser') {
-            echo $_POST['username'];
-            if(isset($_POST['username']) && strlen($_POST['username']) >=5) {
-                if(isset($_POST['passwordHash']) && ($_POST['passwordHash'] == $_POST['passwordHashSecond'])) {
-                    if (!filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)) {
+            if(isset($_POST['username']) && $controller->checkUsername($_POST['username'])) {
+                if(isset($_POST['passwordHash']) && $controller->checkPasswordCompare($_POST['passwordHash'], $_POST['passwordHashSecond']) && $controller->checkPasswordQuality($_POST['passwordHash'])) {
+                    if (!$controller->checkEmail($_POST['mail'])) {
                         throw new Exception('L"email ne me convient pas !');
                     } else {
                         $controller->inscription($_POST['username'], $_POST['passwordHash'], $_POST['mail']);
                     }
                 } else {
-                    throw new Exception('Les mots de passe ne correspondent pas !');
+                    throw new Exception('Les mots de passe ne correspond pas au attente, vérifier sa longueur, une minuscule, majuscule etc !');
                 }
             } else {
                 throw new Exception('Nom d\'utilisateur ne respecte pas les règles !');

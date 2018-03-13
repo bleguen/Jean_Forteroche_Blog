@@ -45,7 +45,7 @@ class Controller {
 
         $user = $this->usersManager->postUser($username, $passwordHash, $mail);
 
-        header('location: index.php');
+        //header('location: index.php');
     }
 
     public function connection($username) {
@@ -70,6 +70,31 @@ class Controller {
          session_start();
          header('location: index.php');
     }
+
+    public function checkUsername($username) {
+        $user = $this->usersManager->getUser($username);
+
+        if($username == $user['username']) {
+            echo "Ce pseudo est déjà utilisé";
+        }
+        
+        return preg_match (" #^[a-zA-Z0-9_]{5,16}$# " , $username);
+
+    }
+
+    public function checkPasswordQuality($pass) {
+        return preg_match("#\w{8,25}#", $pass) && preg_match("#[A-Z]+#", $pass) && preg_match("#[0-9]+#", $pass);
+    }
+
+    public function checkPasswordCompare($pass, $secondPass) {
+        if($pass == $secondPass) {
+            return true;
+        } else {
+            echo "Les mots de passe ne correspondent pas";
+        }
+    }
+
+    public function checkEmail($email) {
+        return filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL);
+    }
 }
-
-

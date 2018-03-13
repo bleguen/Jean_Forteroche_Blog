@@ -55,7 +55,7 @@
                             $chapters = $chapterManager->getAllChapters();
                             while($data = $chapters->fetch()) {
                         ?>
-                            <a class="dropdown-item" href="index.php?action=post&amp;id=<?=$data['id'] ?>"> <?= htmlspecialchars($data['title']) ?></a>
+                            <a class="dropdown-item" href="index.php?action=chapter&amp;id=<?=$data['id'] ?>"> <?= htmlspecialchars($data['title']) ?></a>
                         <?php
                             }
                         ?>

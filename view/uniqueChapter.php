@@ -27,25 +27,30 @@
     <div class="row">
         <div class="col-md-8">
             <?php foreach($dataComments as $dataComment): ?>
-                <p><?= $dataComment['username']; ?></p>
-                <p><?= $dataComment['comment_text']; ?></p>
-                <p><?= $dataComment['comment_date_fr'] ?></p>
+                <p><?= htmlspecialchars($dataComment['username']); ?></p>
+                <p><?= htmlspecialchars($dataComment['comment_text']); ?></p>
+                <p><?= htmlspecialchars($dataComment['comment_date_fr']); ?></p>
             <?php endforeach;?>
         </div>
     </div>
 </section>
-<section class="container-fluid">
+<?php if(isset($_SESSION['username'])) {
+?>
+<section class='container-fluid'>
     <h3>Ajouter un commentaire</h3>
-    <form action='index.php?action=addComment&amp;id=<?=$data['id'] ?>' method="post">
-        <textarea name="id_Chapters"  cols="1" rows="1" style=""><?= $data['id'] ?></textarea>
-        Votre pseudo :
-        <input name="id_Users" type="text" placeholder ="votre id">
+    <form action='index.php?action=addComment&amp;id=<?=htmlspecialchars($data['id'])?>' method='post'>
+        <textarea name='id_Chapters' cols='1' rows='1' style='display: none'> <?=htmlspecialchars($data['id'])?></textarea>
+        Votre pseudo : <?=htmlspecialchars($_SESSION['username']) ?>
+        <input name='id_Users' type='text' value ='<?=htmlspecialchars(intval($_SESSION['id']))?>' style='display: none'><br>
         Votre message :<br>
-        <input name="comment_text" type="textarea" placeholder="Votre message">
+        <input name='comment_text' type='textarea' placeholder='Votre message'>
         <p>ajouter un capcha</p>
-        <input type="submit" value="Submit">
+        <input type='submit' value='Submit'>
     </form>
 </section>
+<?php 
+}
+?>
 
 <?php $content= ob_get_clean(); ?>
 

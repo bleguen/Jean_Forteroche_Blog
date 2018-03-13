@@ -6,7 +6,7 @@ class UsersManager extends Manager {
 
     public function getUser($username) {
         $db = $this->dbConnect();
-        $req = $db->prepare("SELECT username, passwordHash  FROM users WHERE username =  '$username'");
+        $req = $db->prepare("SELECT username, passwordHash, id  FROM users WHERE username =  '$username'");
         $req->execute(array($username));
         $user = $req->fetch();
 

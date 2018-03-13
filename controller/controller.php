@@ -31,9 +31,10 @@ class Controller {
     }
 
     public function addComment($id_Chapters, $id_Users, $comment_text ) {
+        
         $comments = $this->commentsManager->postComment($id_Chapters, $id_Users, $comment_text );
 
-        header('location: index.php?action=post&id=' .$id_Chapters);
+        header('location: index.php?action=chapter&id=' .$id_Chapters);
     }
     
     public function pageInscription() {
@@ -49,18 +50,16 @@ class Controller {
 
     public function connection($username) {
         $user = $this->usersManager->getUser($username);
-        var_dump($_POST['passwordHash']);
-        var_dump($user['passwordHash']);
+
         $isPasswordCorrect = password_verify($_POST['passwordHash'], $user['passwordHash']);
-        
-        var_dump($isPasswordCorrect);
 
         if($isPasswordCorrect) {
             $_SESSION['username'] = $user['username'];
+            $_SESSION['id'] = $user['id'];
             header('location: index.php');
             
         } else {
-            echo 'Erreur : ';
+            echo 'Erreur : Mot de passe ou nom utilisateur incorrect ';
         } 
     }
 

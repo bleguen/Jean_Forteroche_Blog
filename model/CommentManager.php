@@ -15,7 +15,7 @@ class CommentManager extends Manager {
         return $comments;
     }
 
-    public function postComment($id_Chapters, $id_Users, $comment_text ) {
+    public function postComment($id_Chapters, $id_Users, $comment_text) {
         $db = $this->dbConnect();
         $req = $db->prepare("INSERT INTO comments (id_Chapters, id_Users, comment_text, comment_date) VALUES(?,?,?, NOW())");
         $comments = $req->execute(array($id_Chapters, $id_Users, $comment_text ));

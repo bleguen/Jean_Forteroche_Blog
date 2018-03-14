@@ -47,6 +47,14 @@ try {
             $controller->connection($_POST['username'], $_POST['passwordHash']);
         } elseif ((isset($_GET['action'])) && ($_GET['action'] == 'logout')) {
            $controller->deconnection();
+        } elseif($_GET['action'] == 'sendChapter') { 
+            if(isset($_POST['title'])) {
+                $controller->checkFilesForNewChapter();
+                $controller->addChapter($_POST['title'], ($_FILES['mon_fichier']["name"]), $_POST['text']);
+            }
+            require('view/createChapter.php');
+        } elseif($_GET['action'] == 'admin') {
+            $controller->admin();
         } else {
             echo "erreur";
         }

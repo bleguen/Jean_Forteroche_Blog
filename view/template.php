@@ -14,6 +14,69 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <!-- TinyMCE -->
+    <script src="tinymce/js/tinymce/tinymce.js"></script>
+    <script type="text/javascript">
+        tinymce.init({
+            selector : "textarea",
+            theme : "modern",
+            language: "fr_FR",
+            height: 450,
+            branding: false,
+            plugins: [
+                "advlist autolink save link image lists charmap print preview hr anchor pagebreak",
+                "searchreplace wordcount visualblocks visualchars fullscreen insertdatetime media nonbreaking",
+                "table contextmenu directionality emoticons template textcolor paste fullpage textcolor colorpicker textpattern"
+            ],
+            toolbar1: " fullpage | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | styleselect formatselect fontselect fontsizeselect",
+            toolbar2: "cut copy paste | searchreplace | bullist numlist | outdent indent blockquote | undo redo | image | link unlink anchor image media | insertdatetime preview | forecolor backcolor",
+            content_css: [
+                '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i'],
+
+            toolbar_items_size: 'medium',
+            image_title: true, 
+            // enable automatic uploads of images represented by blob or data URIs
+            automatic_uploads: true,
+            // URL of our upload handler (for more details check: https://www.tinymce.com/docs/configure/file-image-upload/#images_upload_url)
+            // images_upload_url: 'postAcceptor.php',
+            // here we add custom filepicker only to Image dialog
+            file_picker_types: 'image', 
+            // and here's our custom image picker
+            file_picker_callback: function(cb, value, meta) {
+                var input = document.createElement('input');
+                input.setAttribute('type', 'file');
+                input.setAttribute('accept', 'image/*');
+                
+                // Note: In modern browsers input[type="file"] is functional without 
+                // even adding it to the DOM, but that might not be the case in some older
+                // or quirky browsers like IE, so you might want to add it to the DOM
+                // just in case, and visually hide it. And do not forget do remove it
+                // once you do not need it anymore.
+
+                input.onchange = function() {
+                var file = this.files[0];
+                
+                var reader = new FileReader();
+                reader.onload = function () {
+                    // Note: Now we need to register the blob in TinyMCEs image blob
+                    // registry. In the next release this part hopefully won't be
+                    // necessary, as we are looking to handle it internally.
+                    var id = 'blobid' + (new Date()).getTime();
+                    var blobCache =  tinymce.activeEditor.editorUpload.blobCache;
+                    var base64 = reader.result.split(',')[1];
+                    var blobInfo = blobCache.create(id, file, base64);
+                    blobCache.add(blobInfo);
+
+                    // call the callback and populate the Title field with the file name
+                    cb(blobInfo.blobUri(), { title: file.name });
+                };
+                reader.readAsDataURL(file);
+                };
+                
+                input.click();
+            }
+        });
+     </script>
     <!-- Meta OG et Twitter -->
     <meta property="og:title" content="Jean Forteroche Blog">
     <meta property="og:type" content="Website">
@@ -55,19 +118,28 @@
                             $chapters = $chapterManager->getAllChapters();
                             while($data = $chapters->fetch()) {
                         ?>
-                            <a class="dropdown-item" href="index.php?action=chapter&amp;id=<?=$data['id'] ?>"> <?= htmlspecialchars($data['title']) ?></a>
+                            <a class="dropdown-item" href="index.php?action=chapter&amp;id=<?= $data['id'] ?>"> <?= htmlspecialchars($data['title']) ?></a>
                         <?php
                             }
                         ?>
                         </div>
                     </li>
+                    <?php
+                        if(isset($_SESSION['username']) && ($_SESSION['id'] == 1)) {
+                    ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php?action=admin">Administration</a>
+                    </li>
+                    <?php
+                        }
+                    ?>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                     <?php 
                     if(isset($_SESSION['username'])) {
-                        echo "<li class='nav-item '> <p>Bienvenue à toi mon ami "  . htmlspecialchars($_SESSION['username']). "</p></li>
+                        echo "<li class='nav-item '> <p>Bienvenue à toi "  . htmlspecialchars($_SESSION['username']). "</p></li>
                               <li class='nav-item'>
-                                <p><a href='index.php?action=logout' title='Déconnexion'>Se déconnecter</a></p>
+                                <p><a class='btn btn-danger' href='index.php?action=logout' title='Déconnexion'>Se déconnecter</a></p>
                               </li>";
                     } else {
                         echo "<li class='nav-item'>

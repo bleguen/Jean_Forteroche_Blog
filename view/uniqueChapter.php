@@ -13,9 +13,9 @@
     <div class="row">
         <div class="col-md-8">
             <div class="card">
-                <img class="card-img" src="<?= htmlspecialchars($data['chapter_img']); ?>" alt="Card image cap">
+                <img class="card-img" src="public/images/<?= htmlspecialchars($data['chapter_img']); ?>" alt="Card image cap">
                     <div class="card-body">
-                        <p><?= htmlspecialchars($data['chapter_texte']); ?></p>
+                        <p><?= $data['chapter_texte']; ?></p>
                         <p> Posté le : <?= htmlspecialchars($data['chapter_date_fr']); ?></p>
                     </div>
             </div>

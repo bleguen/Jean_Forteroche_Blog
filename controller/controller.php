@@ -30,6 +30,63 @@ class Controller {
         require('view/uniqueChapter.php');
     }
 
+    public function addChapter($title, $chapter_img, $chapter_text) {
+        $newChapter = $this->chapterManager->createChapter($title, $chapter_img, $chapter_text);
+
+        //require la vue page administration
+        header('location: index.php');
+    }
+
+    public function admin() {
+        require('view/admin.php');
+    }
+
+    public function checkFilesForNewChapter() {
+
+        $target_dir = "public/images/";
+        $target_file = $target_dir . basename($_FILES["mon_fichier"]["name"]);
+        $uploadOk = 1;
+        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+        // Check if image file is a actual image or fake image
+        if(isset($_POST["envoyer_article"])) {
+            $check = getimagesize($_FILES["mon_fichier"]["tmp_name"]);
+            if($check !== false) {
+                echo "File is an image - " . $check["mime"] . ".";
+                $uploadOk = 1;
+            } else {
+                echo "File is not an image.";
+                $uploadOk = 0;
+            }
+        }
+        // Check if file already exists
+        if (file_exists($target_file)) {
+            echo "Sorry, file already exists.";
+            $uploadOk = 0;
+        }
+        // Check file size
+        if ($_FILES["mon_fichier"]["size"] > 500000) {
+            echo "Sorry, your file is too large.";
+            $uploadOk = 0;
+        }
+        // Allow certain file formats
+        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+        && $imageFileType != "gif" ) {
+            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+            $uploadOk = 0;
+        }
+        // Check if $uploadOk is set to 0 by an error
+        if ($uploadOk == 0) {
+            echo "Sorry, your file was not uploaded.";
+        // if everything is ok, try to upload file
+        } else {
+            if (move_uploaded_file($_FILES["mon_fichier"]["tmp_name"], $target_file)) {
+                echo "The file ". basename( $_FILES["mon_fichier"]["name"]). " has been uploaded.";
+            } else {
+                echo "Sorry, there was an error uploading your file.";
+            }
+        }
+    }
+
     public function addComment($id_Chapters, $id_Users, $comment_text ) {
         
         $comments = $this->commentsManager->postComment($id_Chapters, $id_Users, $comment_text );
@@ -45,7 +102,7 @@ class Controller {
 
         $user = $this->usersManager->postUser($username, $passwordHash, $mail);
 
-        //header('location: index.php');
+        header('location: index.php');
     }
 
     public function connection($username) {

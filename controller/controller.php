@@ -113,6 +113,18 @@ class Controller {
 
         header('location: index.php?action=chapter&id=' .$id_Chapters);
     }
+
+    public function reported($id, $id_Chapters) {
+        $reported = $this->commentsManager->reported($id);
+        
+        header('location: index.php?action=chapter&id=' .$id_Chapters);
+    }
+
+    public function deleteComment($id) {
+        $reported = $this->commentsManager->deleteComment($id);
+        
+        header('location: index.php?action=admin');
+    }
     
     public function pageInscription() {
         require('view/inscription.php');

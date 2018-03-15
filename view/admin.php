@@ -20,7 +20,7 @@
   </thead>
   <tbody>
   <?php 
-    $i = 0;
+    $i = 1;
     while($data = $chapters->fetch()) { ?>
     <tr>
     
@@ -54,17 +54,22 @@
   </thead>
   <tbody>
   <?php   
-    $i = 0;
+    $i = 1;
+    $alert = 0;
     while($comment = $comments->fetch()){ ?>
       <tr>
           <th scope="row"><?= $i++ ?></th>
           <td><?= htmlspecialchars($comment['id_Users'])?></td>
           <td><?=htmlspecialchars($comment['comment_text']); ?></td>
           <td><?=htmlspecialchars($comment['id_Chapters']); ?></td>
-          <td><a href="" class="btn btn-primary">Supprimer</a></td>
-          <td></td>
+          <td><a href="index.php?action=deleteComment&amp;id=<?= $comment['id'];?>" class="btn btn-primary">Supprimer</a></td>
+          <td><?= htmlspecialchars($comment['reported']); ?></td>
       </tr>
     <?php
+    
+      if($comment['reported']>=5) {
+        $alert = $alert+1;
+      }
     }
     ?>
     

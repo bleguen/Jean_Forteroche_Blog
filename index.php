@@ -26,6 +26,8 @@ try {
             } else {
                 throw new Exception('Aucun identifiant de billet envoyé');
             }
+        } elseif($_GET['action'] == 'report') {
+            $controller->reported($_GET['id'], $_GET['idChap']);
         } elseif($_GET['action'] == 'inscription') {
             $controller->pageInscription();
         } elseif($_GET['action'] == 'addUser') {
@@ -70,6 +72,8 @@ try {
                     }
                 }
                 $controller->chapterInfos($_GET['id']);
+            } elseif($_GET['action'] == 'deleteComment') {
+                $controller->deleteComment($_GET['id']);
             }
         }  else {
             echo "erreur";

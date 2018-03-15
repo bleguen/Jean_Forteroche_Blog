@@ -25,7 +25,23 @@ class CommentManager extends Manager {
 
     public function getAllComments() {
         $db = $this->dbConnect();
-        $req = $db->prepare("SELECT * FROM comments");
+        $req = $db->prepare("SELECT * FROM comments ORDER BY `reported` DESC");
+        $req->execute();
+
+        return $req;
+    }
+
+    public function reported($id) {
+        $db = $this->dbConnect();
+        $req = $db->prepare("UPDATE `comments` SET `reported` = `reported`+1  WHERE `id` = $id");
+        $req->execute();
+
+        return $req;
+    }
+
+    public function deleteComment($id) {
+        $db = $this->dbConnect();
+        $req = $db->prepare("DELETE FROM `comments` WHERE `id` = $id");
         $req->execute();
 
         return $req;

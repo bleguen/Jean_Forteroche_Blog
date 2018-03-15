@@ -25,11 +25,11 @@
 <section id="commentaires" class="container-fluid">
     <h3>Commentaires</h3>
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <?php foreach($dataComments as $dataComment): ?>
-                <p><?= htmlspecialchars($dataComment['username']); ?></p>
+                <div style="display: flex"><p class="col-md-3"><?= htmlspecialchars($dataComment['username']); ?></p><a class="col-md-3" href="index.php?action=report&amp;id=<?=htmlspecialchars($dataComment['id']);?>&amp;idChap=<?= $dataComment['id_Chapters']?>">Signaler</a></div>
                 <p><?= htmlspecialchars($dataComment['comment_text']); ?></p>
-                <p><?= htmlspecialchars($dataComment['comment_date_fr']); ?></p>
+                <p>Ajouté le : <?= htmlspecialchars($dataComment['comment_date_fr']); ?></p>
             <?php endforeach;?>
         </div>
     </div>

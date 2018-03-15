@@ -46,6 +46,14 @@ class CommentManager extends Manager {
 
         return $req;
     }
+
+    public function deleteAllComments($id_Chapters) {
+        $db = $this->dbConnect();
+        $req = $db->prepare("DELETE FROM `comments` WHERE `id_Chapters` = ?");
+        $req->execute(array($id_Chapters));
+
+        return $req;
+    }
 }
 
 ?>

@@ -55,8 +55,8 @@ try {
             } elseif($_GET['action'] == 'sendChapter') { 
                 if(isset($_POST['title'])) {
                     if (strlen($_POST['title']) > 0 && strlen($_FILES['mon_fichier']["name"]) >0) {
-                    $controller->checkFilesForNewChapter();
-                    $controller->addChapter($_POST['title'], ($_FILES['mon_fichier']["name"]), $_POST['text']);
+                        $controller->checkImagesForNewChapter();
+                        $controller->addChapter($_POST['title'], ($_FILES['mon_fichier']["name"]), $_POST['text']);
                     } else {
                         echo "Il manque un titre ET/OU une image";
                     } 
@@ -67,8 +67,9 @@ try {
             } elseif($_GET['action'] == 'updateChapter') {
                 if(isset($_POST['title'])) {
                     if (strlen($_POST['title']) > 0) {
-                        $controller->checkFilesForNewChapter();
-                        $controller->updateChapter($_GET['id'], $_POST['title'], ($_FILES['mon_fichier']["name"]), $_POST['text']);
+                        $monImage = $controller->imgTest($_GET['id']);
+                        $controller->checkImagesForNewChapter();
+                        $controller->updateChapter($_GET['id'], $_POST['title'], $monImage, $_POST['text']);
                     }
                 }
                 $controller->chapterInfos($_GET['id']);

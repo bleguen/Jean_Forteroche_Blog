@@ -50,18 +50,29 @@ class Controller {
     }
 
     public function updateChapter($id, $title, $chapter_img, $chapter_text) {
+
         $updateChapter = $this->chapterManager->updateChapter($id, $title, $chapter_img, $chapter_text);
 
         header('location: index.php?action=admin');
     }
 
+    public function imgTest($id) { 
+        $chapter = $this->chapterManager->getChapter($id);
+        if(empty($_FILES['mon_fichier']["name"])) {
+            return $chapter['chapter_img'];
+        } else {
+            return ($_FILES['mon_fichier']["name"]);
+        }
+    }
+
     public function deleteChapter($id) {
+        $this->commentsManager->deleteAllComments($id);
         $deleteChapter = $this->chapterManager->deleteChapter($id);
 
         header('location: index.php?action=admin');
     }
 
-    public function checkFilesForNewChapter() {
+    public function checkImagesForNewChapter() {
 
         $target_dir = "public/images/";
         $target_file = $target_dir . basename($_FILES["mon_fichier"]["name"]);
@@ -78,13 +89,9 @@ class Controller {
                 $uploadOk = 0;
             }
         }
-        // Check if file already exists
-        if (file_exists($target_file)) {
-            echo "Sorry, file already exists.";
-            $uploadOk = 0;
-        }
+        
         // Check file size
-        if ($_FILES["mon_fichier"]["size"] > 500000) {
+        if ($_FILES["mon_fichier"]["size"] > 50000000) {
             echo "Sorry, your file is too large.";
             $uploadOk = 0;
         }

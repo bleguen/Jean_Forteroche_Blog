@@ -111,94 +111,67 @@
                             Chapitre
                         </a>
                         <div class="dropdown-menu"> 
-                        <?php
-
-                            require_once('model/CommentManager.php');
-                            $commentManager = new CommentManager();
-                                $comments = $commentManager->getAllComments();
-                                $alert = 0;
-                                while($comment = $comments->fetch()){
-                                    if($comment['reported']>=5) {
-                                        $alert = $alert+1;
-                                    }
-                                }
-                            require_once('model/ChapterManager.php');
-
-                            $chapterManager = new ChapterManager();
-                            $chapters = $chapterManager->getAllChapters();
-                            while($data = $chapters->fetch()) {
-                        ?>
-                            <a class="dropdown-item" href="index.php?action=chapter&amp;id=<?= $data['id'] ?>"> <?= htmlspecialchars($data['title']) ?></a>
-                        <?php
-                            }
-                        ?>
+                            <?php include'dropdownChapter.php'; ?>
                         </div>
                     </li>
-                    <?php
-                        if(isset($_SESSION['username']) && ($_SESSION['id'] == 1)) {
-                    ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php?action=admin">Administration<span class="badge badge-danger"><?= $alert ?></span></a>
-                    </li>
-                    <?php
-                        
-                        }
-                    ?>
+                            <?php include'navAdministration.php'; ?>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                     <?php 
-                    if(isset($_SESSION['username'])) {
-                        echo "<li class='nav-item '> <p>Bienvenue à toi "  . htmlspecialchars($_SESSION['username']). "</p></li>
-                              <li class='nav-item'>
-                                <p><a class='btn btn-danger' href='index.php?action=logout' title='Déconnexion'>Se déconnecter</a></p>
-                              </li>";
+                    if(isset($_SESSION['username'])) { ?>
+                        <li class='nav-item '>
+                            <p>Bienvenue à toi <?= htmlspecialchars($_SESSION['username']) ?></p></li>
+                        <li class='nav-item'>
+                            <p><a class='btn btn-danger' href='index.php?action=logout' title='Déconnexion'>Se déconnecter</a></p>
+                        </li>
+                    <?php
                     } else {
-                        echo "<li class='nav-item'>
-                                <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#connectModal'><i class='fas fa-sign-in-alt'></i> Login</button>
-                             </li>
+                    ?>
+                        <li class='nav-item'>
+                            <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#connectModal'><i class='fas fa-sign-in-alt'></i> Login</button>
+                        </li>
 
-                            <!-- The Modal -->
-                                <div class='modal fade' id='connectModal'>
-                                    <div class='modal-dialog'>
-                                        <div class='modal-content'>
+                        <!-- The Modal -->
+                        <div class='modal fade' id='connectModal'>
+                            <div class='modal-dialog'>
+                                <div class='modal-content'>
 
-                                            <!-- Modal Header -->
-                                            <div class='modal-header'>
-                                                <h4 class='modal-title'>Espace de connexion</h4>
-                                                <button type='button' class='close' data-dismiss='modal'>&times;</button>
+                                <!-- Modal Header -->
+                                    <div class='modal-header'>
+                                        <h4 class='modal-title'>Espace de connexion</h4>
+                                        <button type='button' class='close' data-dismiss='modal'>&times;</button>
+                                    </div>
+
+                                    <!-- Modal body -->
+                                    <div class='modal-body'>
+                                        <form action='index.php?action=connection' method='post'>
+                                            <div>
+                                                <label>Identifiant :</label>
+                                                <input name='username' type='text' placeholder='Veuillez rentrer votre pseudo'/>
                                             </div>
-
-                                            <!-- Modal body -->
-                                            <div class='modal-body'>
-                                                <form action='index.php?action=connection' method='post'>
-                                                <div>
-                                                    <label>Identifiant :</label>
-                                                    <input name='username' type='text' placeholder='Veuillez rentrer votre pseudo'/>
-                                                </div>
-                                                <div>
-                                                    <label>Mot de passe :</label>
-                                                    <input name='passwordHash' type='password' placeholder='Veuillez rentrer votre mot de passe'/>
-                                                </div>
-                                                <div>
-                                                    <input class='btn btn-primary' type='submit' value='Valider' />
-                                                </div>
-                                                </form>
-                                                <div>
-                                                    <p>Vous n'etes pas encore inscris, venez ici</p>
-                                                    <a href='index.php?action=inscription'>Inscription</a>
-                                                </div>
+                                            <div>
+                                                <label>Mot de passe :</label>
+                                                <input name='passwordHash' type='password' placeholder='Veuillez rentrer votre mot de passe'/>
                                             </div>
-
-                                            <!-- Modal footer -->
-                                            <div class='modal-footer'>
-                                                <button type='button' class='btn btn-danger' data-dismiss='modal'>Close</button>
+                                            <div>
+                                                <input class='btn btn-primary' type='submit' value='Valider' />
                                             </div>
-
+                                        </form>
+                                        <div>
+                                            <p>Vous n'etes pas encore inscris, venez ici</p>
+                                            <a href='index.php?action=inscription'>Inscription</a>
                                         </div>
                                     </div>
-                                </div>";
-                    } ?>
-                    
+
+                                    <!-- Modal footer -->
+                                    <div class='modal-footer'>
+                                        <button type='button' class='btn btn-danger' data-dismiss='modal'>Close</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    <?php } ?>
                 </ul>
             </div>
         </nav>

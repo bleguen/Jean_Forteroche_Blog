@@ -30,15 +30,35 @@ class Controller {
         require('view/uniqueChapter.php');
     }
 
-    public function addChapter($title, $chapter_img, $chapter_text) {
-        $newChapter = $this->chapterManager->createChapter($title, $chapter_img, $chapter_text);
+    public function chapterInfos($id) {
+        $chapter = $this->chapterManager->getChapter($id);
 
-        //require la vue page administration
-        header('location: index.php');
+        require('view/updateChapter.php');
     }
 
     public function admin() {
+        $chapters = $this->chapterManager->getAllChapters();
+        $comments = $this->commentsManager->getAllComments();
+
         require('view/admin.php');
+    }
+
+    public function addChapter($title, $chapter_img, $chapter_text) {
+        $newChapter = $this->chapterManager->createChapter($title, $chapter_img, $chapter_text);
+
+        header('location: index.php?action=admin');
+    }
+
+    public function updateChapter($id, $title, $chapter_img, $chapter_text) {
+        $updateChapter = $this->chapterManager->updateChapter($id, $title, $chapter_img, $chapter_text);
+
+        header('location: index.php?action=admin');
+    }
+
+    public function deleteChapter($id) {
+        $deleteChapter = $this->chapterManager->deleteChapter($id);
+
+        header('location: index.php?action=admin');
     }
 
     public function checkFilesForNewChapter() {
@@ -121,7 +141,7 @@ class Controller {
     }
 
     public function deconnection() {
-         // Destruction de la session ?
+         // Destruction de la session 
          $_SESSION = array();
          session_destroy();
          session_start();

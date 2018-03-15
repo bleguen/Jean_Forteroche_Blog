@@ -47,15 +47,31 @@ try {
             $controller->connection($_POST['username'], $_POST['passwordHash']);
         } elseif ((isset($_GET['action'])) && ($_GET['action'] == 'logout')) {
            $controller->deconnection();
-        } elseif($_GET['action'] == 'sendChapter') { 
-            if(isset($_POST['title'])) {
-                $controller->checkFilesForNewChapter();
-                $controller->addChapter($_POST['title'], ($_FILES['mon_fichier']["name"]), $_POST['text']);
+        } elseif(isset($_SESSION['username']) && ($_SESSION['id'] == 1)) {
+            if($_GET['action'] == 'admin') {
+                $controller->admin();
+            } elseif($_GET['action'] == 'sendChapter') { 
+                if(isset($_POST['title'])) {
+                    if (strlen($_POST['title']) > 0 && strlen($_FILES['mon_fichier']["name"]) >0) {
+                    $controller->checkFilesForNewChapter();
+                    $controller->addChapter($_POST['title'], ($_FILES['mon_fichier']["name"]), $_POST['text']);
+                    } else {
+                        echo "Il manque un titre ET/OU une image";
+                    } 
+                } 
+                require('view/createChapter.php');
+            } elseif($_GET['action'] == 'deleteChapter') {
+                $controller->deleteChapter($_GET['id']);
+            } elseif($_GET['action'] == 'updateChapter') {
+                if(isset($_POST['title'])) {
+                    if (strlen($_POST['title']) > 0) {
+                        $controller->checkFilesForNewChapter();
+                        $controller->updateChapter($_GET['id'], $_POST['title'], ($_FILES['mon_fichier']["name"]), $_POST['text']);
+                    }
+                }
+                $controller->chapterInfos($_GET['id']);
             }
-            require('view/createChapter.php');
-        } elseif($_GET['action'] == 'admin') {
-            $controller->admin();
-        } else {
+        }  else {
             echo "erreur";
         }
     

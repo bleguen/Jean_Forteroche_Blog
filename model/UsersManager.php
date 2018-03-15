@@ -12,7 +12,7 @@ class UsersManager extends Manager {
 
         return $user;
     }
-    // A retravailler
+    
     public function postUser($username, $passwordHash, $mail) {
 
         $passwordHash = password_hash($_POST['passwordHash'], PASSWORD_DEFAULT);

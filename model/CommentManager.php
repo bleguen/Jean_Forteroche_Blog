@@ -22,6 +22,14 @@ class CommentManager extends Manager {
 
         return $comments;
     }
+
+    public function getAllComments() {
+        $db = $this->dbConnect();
+        $req = $db->prepare("SELECT * FROM comments");
+        $req->execute();
+
+        return $req;
+    }
 }
 
 ?>

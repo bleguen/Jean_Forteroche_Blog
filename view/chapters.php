@@ -5,8 +5,7 @@
 <?php ob_start(); ?>
 <!-- Haut de page -->
 <section id="articles" class="container-fluid">
-<h1>Mes chapitres</h1>
-<p>Mes 3 derniers chapitres</p>
+<h1 class="d-flex justify-content-center">Mes chapitres</h1>
 <!-- Div regroupant tous les chapitres -->
 <div class="row">
 <?php 
@@ -19,7 +18,7 @@ while($data = $chapters->fetch()) {
                 <img class="card-img" src="public/images/<?= htmlspecialchars($data['chapter_img']) ?>" alt="Card image cap">
                     <div class="card-img-overlay text-white d-flex flex-column justify-content-end">
                         <h4 class="card-title"><?= htmlspecialchars($data['title']) ?></h4>
-                        <p class="card-text"> le : <?= htmlspecialchars($data['chapter_date_fr']) ?></p>
+                        <p class="card-text"> Posté le : <?= htmlspecialchars($data['chapter_date_fr']) ?></p>
                     </div>
             </div>
         </a>

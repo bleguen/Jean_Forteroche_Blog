@@ -8,10 +8,10 @@
 
 <!-- Haut de page -->
 <section id="articles" class="container-fluid">
-    <h1><?= htmlspecialchars($data['title']); ?> </h1>
+    <h1 class="d-flex justify-content-center"><?= htmlspecialchars($data['title']); ?> </h1>
     <!-- Div regroupant tous les chapitres -->
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <img class="card-img" src="public/images/<?= htmlspecialchars($data['chapter_img']); ?>" alt="Card image cap">
                     <div class="card-body">
@@ -23,30 +23,49 @@
     </div>
 </section>
 <section id="commentaires" class="container-fluid">
-    <h3>Commentaires</h3>
-    <div class="row">
-        <div class="col-md-12">
-            <?php foreach($dataComments as $dataComment): ?>
-                <div style="display: flex"><p class="col-md-3"><?= htmlspecialchars($dataComment['username']); ?></p><a class="col-md-3" href="index.php?action=report&amp;id=<?=htmlspecialchars($dataComment['id']);?>&amp;idChap=<?= $dataComment['id_Chapters']?>">Signaler</a></div>
-                <p><?= htmlspecialchars($dataComment['comment_text']); ?></p>
-                <p>Ajouté le : <?= htmlspecialchars($dataComment['comment_date_fr']); ?></p>
-            <?php endforeach;?>
+    <h3  class="d-flex justify-content-center mb-5">Commentaires</h3>
+    <div class="col-md-12">
+        <?php foreach($dataComments as $dataComment): ?>
+        <div class="row col-12 col-md-4 m-0">
+            <p class="col-2 col-md-3 p-0"><strong><?= htmlspecialchars($dataComment['username']); ?></strong></p>
+            <p class="col-8 col-md-8">Ajouté le : <?= htmlspecialchars($dataComment['comment_date_fr']); ?></p>
+            <a class="col-2 col-md-1" href="index.php?action=report&amp;id=<?=htmlspecialchars($dataComment['id']);?>&amp;idChap=<?= $dataComment['id_Chapters']?>">Signaler</a>
         </div>
-    </div>
+        <div class="col-md-6">
+            <p><?= htmlspecialchars($dataComment['comment_text']); ?></p>
+        </div>
+        <?php if($_SESSION['username'] == $dataComment['username']) { ?>
+        <div class="col-md-12">
+            <a data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseModif" href="#collapseModif">Modifier</a>
+            <div class="collapse" id="collapseModif">
+                <form action="index.php?action=updateComment&amp;id=<?=htmlspecialchars($dataComment['id'])?>&amp;id_Chapters=<?=htmlspecialchars($dataComment['id_Chapters'])?>" method='post'>
+                    <label for="newText">Votre message :</label><br>
+                    <input name='newText' type='textarea' cols="5" rows="5" placeholder='Votre message'><br>
+                    <button class="btn btn-primary mt-2" type='submit'>Modifier</button>
+                </form>
+            </div>
+        </div>
+        <?php
+        }
+        ?>
+        <?php endforeach;?>
+     </div>
 </section>
 <?php if(isset($_SESSION['username'])) {
 ?>
-<section class='container-fluid'>
-    <h3>Ajouter un commentaire</h3>
-    <form action='index.php?action=addComment&amp;id=<?=htmlspecialchars($data['id'])?>' method='post'>
-        <textarea name='id_Chapters' cols='1' rows='1' style='display: none'> <?=htmlspecialchars($data['id'])?></textarea>
-        Votre pseudo : <?=htmlspecialchars($_SESSION['username']) ?>
-        <input name='id_Users' type='text' value ='<?=htmlspecialchars(intval($_SESSION['id']))?>' style='display: none'><br>
-        Votre message :<br>
-        <input name='comment_text' type='textarea' placeholder='Votre message'>
-        <p>ajouter un capcha</p>
-        <input type='submit' value='Submit'>
-    </form>
+<section id="ajoutCommentaire" class='container-fluid'>
+<a class="btn btn-primary d-flex justify-content-center mb-2 mt-5" data-toggle="collapse" href="#collapseForm" role="button" aria-expanded="false" aria-controls="collapseForm">Laisser un commentaire</a>
+    <div class="collapse mb-5" id="collapseForm">
+        <form action='index.php?action=addComment&amp;id=<?=htmlspecialchars($data['id'])?>' method='post'>
+            <div class="form-group col-md-12">
+                <textarea name='id_Chapters' cols='1' rows='1' style='display: none'> <?=htmlspecialchars($data['id'])?></textarea>
+                <input name='id_Users' type='text' value ='<?=htmlspecialchars(intval($_SESSION['id']))?>' style='display: none'>
+                <label for="comment_text">Votre message :</label><br>
+                <input name='comment_text' type='textarea' cols="5" rows="5" placeholder='Votre message'><br>
+                <button class="btn btn-primary mt-2" type='submit'>Envoyer</button>
+            </div>
+        </form>
+    </div>
 </section>
 <?php 
 }

@@ -16,6 +16,8 @@ class Controller {
         $this->usersManager = new UsersManager();
     }
 
+    // Fonctions pour chapitres
+
     public function listChapters() {
         $chapters = $this->chapterManager->getAllChapters();
 
@@ -35,6 +37,8 @@ class Controller {
 
         require('view/updateChapter.php');
     }
+
+    // Fonction pour la partie admin
 
     public function admin() {
         $chapters = $this->chapterManager->getAllChapters();
@@ -63,13 +67,6 @@ class Controller {
         } else {
             return ($_FILES['mon_fichier']["name"]);
         }
-    }
-
-    public function deleteChapter($id) {
-        $this->commentsManager->deleteAllComments($id);
-        $deleteChapter = $this->chapterManager->deleteChapter($id);
-
-        header('location: index.php?action=admin');
     }
 
     public function checkImagesForNewChapter() {
@@ -114,6 +111,22 @@ class Controller {
         }
     }
 
+    public function deleteChapter($id) {
+        $this->commentsManager->deleteAllComments($id);
+        $deleteChapter = $this->chapterManager->deleteChapter($id);
+
+        header('location: index.php?action=admin');
+    }
+    
+    public function deleteComment($id) {
+        $reported = $this->commentsManager->deleteComment($id);
+        
+        header('location: index.php?action=admin');
+    }
+    
+
+    // Fonction pour les commentaires
+
     public function addComment($id_Chapters, $id_Users, $comment_text ) {
         
         $comments = $this->commentsManager->postComment($id_Chapters, $id_Users, $comment_text );
@@ -127,11 +140,13 @@ class Controller {
         header('location: index.php?action=chapter&id=' .$id_Chapters);
     }
 
-    public function deleteComment($id) {
-        $reported = $this->commentsManager->deleteComment($id);
-        
-        header('location: index.php?action=admin');
+    public function updateComment($newText, $id, $id_Chapters) {
+        $updateComment = $this->commentsManager->updateComment($newText, $id);
+
+        header('location: index.php?action=chapter&id=' .$id_Chapters);
     }
+
+    // Fonction pour la page d'inscription et connection deconnection
     
     public function pageInscription() {
         require('view/inscription.php');

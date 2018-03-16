@@ -28,6 +28,8 @@ try {
             }
         } elseif($_GET['action'] == 'report') {
             $controller->reported($_GET['id'], $_GET['idChap']);
+        } elseif($_GET['action'] == 'updateComment') {
+            $controller->updateComment($_POST['newText'], $_GET['id'], $_GET['id_Chapters']);
         } elseif($_GET['action'] == 'inscription') {
             $controller->pageInscription();
         } elseif($_GET['action'] == 'addUser') {

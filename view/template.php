@@ -115,14 +115,15 @@
                         </div>
                     </li>
                             <?php include'navAdministration.php'; ?>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
+                </ul>
+                <ul class="navbar-nav navbar-right">
                     <?php 
                     if(isset($_SESSION['username'])) { ?>
-                        <li class='nav-item '>
-                            <p>Bienvenue à toi <?= htmlspecialchars($_SESSION['username']) ?></p></li>
                         <li class='nav-item'>
-                            <p><a class='btn btn-danger' href='index.php?action=logout' title='Déconnexion'>Se déconnecter</a></p>
+                            <p class="navbar-text m-0 mr-2">Bienvenue à toi <strong><?= htmlspecialchars($_SESSION['username']) ?></strong></p>
+                        </li>
+                        <li class='nav-item'>
+                            <a class='nav-link btn btn-danger border-0' href='index.php?action=logout' title='Déconnexion'>Se déconnecter <i class="fas fa-sign-out-alt"></i></a>
                         </li>
                     <?php
                     } else {
@@ -145,27 +146,23 @@
                                     <!-- Modal body -->
                                     <div class='modal-body'>
                                         <form action='index.php?action=connection' method='post'>
-                                            <div>
-                                                <label>Identifiant :</label>
-                                                <input name='username' type='text' placeholder='Veuillez rentrer votre pseudo'/>
+                                            <div class="mb-1">
+                                                <label for="username">Identifiant :</label><br>
+                                                <input name='username' type='text' placeholder='Votre pseudo'/>
                                             </div>
                                             <div>
-                                                <label>Mot de passe :</label>
-                                                <input name='passwordHash' type='password' placeholder='Veuillez rentrer votre mot de passe'/>
+                                                <label for="passwordHash">Mot de passe :</label><br>
+                                                <input name='passwordHash' type='password' placeholder='Votre mot de passe'/>
                                             </div>
                                             <div>
+                                                <br>
                                                 <input class='btn btn-primary' type='submit' value='Valider' />
                                             </div>
                                         </form>
-                                        <div>
-                                            <p>Vous n'etes pas encore inscris, venez ici</p>
-                                            <a href='index.php?action=inscription'>Inscription</a>
+                                        <div class=" row mt-3">
+                                            <p class="col-md-8 align-self-center m-0">Vous n'etes pas encore inscris, venez ici</p>
+                                            <a class="col-md-3 mr-1 btn btn-primary" href='index.php?action=inscription'>Inscription</a>
                                         </div>
-                                    </div>
-
-                                    <!-- Modal footer -->
-                                    <div class='modal-footer'>
-                                        <button type='button' class='btn btn-danger' data-dismiss='modal'>Close</button>
                                     </div>
 
                                 </div>

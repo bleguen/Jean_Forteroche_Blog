@@ -5,6 +5,14 @@ fonctions afin de faire appel aux commentaires, commentaire ou poster un comment
 require_once("model/manager.php");
 
 class CommentManager extends Manager {
+    
+    public function getAllComments() {
+        $db = $this->dbConnect();
+        $req = $db->prepare("SELECT * FROM comments ORDER BY `reported` DESC");
+        $req->execute();
+
+        return $req;
+    }
 
     public function getComments($id_Chapters) {
         $db = $this->dbConnect();
@@ -23,13 +31,6 @@ class CommentManager extends Manager {
         return $comments;
     }
 
-    public function getAllComments() {
-        $db = $this->dbConnect();
-        $req = $db->prepare("SELECT * FROM comments ORDER BY `reported` DESC");
-        $req->execute();
-
-        return $req;
-    }
 
     public function reported($id) {
         $db = $this->dbConnect();
@@ -39,18 +40,26 @@ class CommentManager extends Manager {
         return $req;
     }
 
-    public function deleteComment($id) {
+    public function updateComment($newText, $id) {
         $db = $this->dbConnect();
-        $req = $db->prepare("DELETE FROM `comments` WHERE `id` = $id");
-        $req->execute();
+        $req = $db->prepare("UPDATE `comments` SET `comment_text` = ?, `comment_date` = NOW() WHERE `id` = ?");
+        $req->execute(array($newText, $id));
 
         return $req;
     }
-
+    
     public function deleteAllComments($id_Chapters) {
         $db = $this->dbConnect();
         $req = $db->prepare("DELETE FROM `comments` WHERE `id_Chapters` = ?");
         $req->execute(array($id_Chapters));
+
+        return $req;
+    }
+
+    public function deleteComment($id) {
+        $db = $this->dbConnect();
+        $req = $db->prepare("DELETE FROM `comments` WHERE `id` = $id");
+        $req->execute();
 
         return $req;
     }

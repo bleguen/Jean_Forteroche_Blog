@@ -93,8 +93,8 @@
     <meta name="twitter:images:src" content="http://#">
 </head>
 <body>
-    <header>
-    <div class="container-fluid">
+    <header >
+    <div class="container-fluid" style="width: 100%">
         <nav class="navbar navbar-expand-md navbar-dark bg-dark ">
             <a class="navbar-brand" href="http://localhost/jean_forteroche_blog/index.php">Jean Forteroche</a>
             <!-- Toggler/collapsibe Button -->
@@ -160,7 +160,7 @@
                                             </div>
                                         </form>
                                         <div class=" row mt-3">
-                                            <p class="col-md-8 align-self-center m-0">Vous n'etes pas encore inscris, venez ici</p>
+                                            <p class="col-md-8 align-self-center m-0">Vous n'etes pas encore inscris, cliquez-ici : </p>
                                             <a class="col-md-3 mr-1 btn btn-primary" href='index.php?action=inscription'>Inscription</a>
                                         </div>
                                     </div>
@@ -175,5 +175,10 @@
     </div>
     </header>
     <?= $content ?>
+    <footer id="footer">
+        <div class="col-12 d-flex justify-content-center m-3">
+            <p>Benjamin Le Guen &#169;Copyright All rights reserved</p>
+        </div>
+    </footer>
 </body>
 </html>

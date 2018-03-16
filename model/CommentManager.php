@@ -34,8 +34,8 @@ class CommentManager extends Manager {
 
     public function reported($id) {
         $db = $this->dbConnect();
-        $req = $db->prepare("UPDATE `comments` SET `reported` = `reported`+1  WHERE `id` = $id");
-        $req->execute();
+        $req = $db->prepare("UPDATE `comments` SET `reported` = `reported`+1  WHERE `id` = ?");
+        $req->execute(array($id));
 
         return $req;
     }
@@ -58,8 +58,8 @@ class CommentManager extends Manager {
 
     public function deleteComment($id) {
         $db = $this->dbConnect();
-        $req = $db->prepare("DELETE FROM `comments` WHERE `id` = $id");
-        $req->execute();
+        $req = $db->prepare("DELETE FROM `comments` WHERE `id` = ?");
+        $req->execute($id);
 
         return $req;
     }

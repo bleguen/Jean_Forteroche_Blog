@@ -7,16 +7,23 @@
 <section class="container-fluid">
     <h3>Inscription</h3>
     <form action='index.php?action=addUser' method='post'>
-        Votre pseudo : <br>
-        <input name='username' type='text' placeholder ='Pseudo'><br>
-        Mot de passe :<br>
-        <input name='passwordHash' type='password' placeholder='Votre mot de passe'><br>
-        Confirmation Mot de passe : <br>
-        <input name='passwordHashSecond' type='password' placeholder='Confirmer votre mot de passe'><br>
-        Adresse e-mail : <br>
-        <input name='mail' type='email' placeholder='Votre e-mail'><br>
-        <br>
-        <input type='submit' value='Submit'>
+        <div class="form-group">
+            <label for="username">Votre pseudo : </label><br>
+            <input name='username' type='text' placeholder ='Pseudo'><br>
+        </div>
+        <div class="form-group">
+            <label for="passwordHash">Mot de passe :</label><br>
+            <input name='passwordHash' type='password' placeholder='Votre mot de passe'><br>
+        </div>
+        <div class="form-group">
+            <label for="passwordHashSecond"> Confirmation Mot de passe : </label><br>
+            <input name='passwordHashSecond' type='password' placeholder='Confirmer votre mot de passe'><br>
+        </div>
+        <div class="form-group">
+            <label for="mail">Adresse e-mail :</label><br>
+            <input name='mail' type='email' placeholder='Votre e-mail'><br>
+        </div>
+        <input class="btn btn-primary" type='submit' value='Submit'>
     </form>
 </section>
 

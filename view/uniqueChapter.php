@@ -25,7 +25,13 @@
 <section id="commentaires" class="container-fluid">
     <h3  class="d-flex justify-content-center mb-5">Commentaires</h3>
     <div class="col-md-12">
-        <?php foreach($dataComments as $dataComment): ?>
+    <?php if(count($dataComments) == 0) {
+    ?>
+        <p>Aucun commentaire, soyez le premier à en laisser un !</p>
+    <?php 
+        } else { 
+            foreach($dataComments as $dataComment): 
+    ?>
         <div class="row col-12 col-md-4 m-0">
             <p class="col-2 col-md-3 p-0"><strong><?= htmlspecialchars($dataComment['username']); ?></strong></p>
             <p class="col-8 col-md-8">Ajouté le : <?= htmlspecialchars($dataComment['comment_date_fr']); ?></p>
@@ -34,7 +40,7 @@
         <div class="col-md-6">
             <p><?= htmlspecialchars($dataComment['comment_text']); ?></p>
         </div>
-        <?php if($_SESSION['username'] == $dataComment['username']) { ?>
+        <?php if(isset($_SESSION['username']) &&  ($_SESSION['username']== $dataComment['username'])) { ?>
         <div class="col-md-12">
             <a data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseModif" href="#collapseModif">Modifier</a>
             <div class="collapse" id="collapseModif">
@@ -45,12 +51,14 @@
                 </form>
             </div>
         </div>
-        <?php
-        }
-        ?>
-        <?php endforeach;?>
+    <?php
+                }
+            endforeach;
+            }
+         ?>
      </div>
 </section>
+
 <?php if(isset($_SESSION['username'])) {
 ?>
 <section id="ajoutCommentaire" class='container-fluid'>

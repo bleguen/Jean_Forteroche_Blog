@@ -35,16 +35,16 @@
         <div class="row col-12 col-md-4 m-0">
             <p class="col-2 col-md-3 p-0"><strong><?= htmlspecialchars($dataComment['username']); ?></strong></p>
             <p class="col-8 col-md-8">Ajouté le : <?= htmlspecialchars($dataComment['comment_date_fr']); ?></p>
-            <a class="col-2 col-md-1" href="index.php?action=report&amp;id=<?=htmlspecialchars($dataComment['id']);?>&amp;idChap=<?= $dataComment['id_Chapters']?>">Signaler</a>
+            <a class="col-2 col-md-1" href="index.php?action=report&amp;id=<?= htmlspecialchars($dataComment['id']);?>&amp;idChap=<?= htmlspecialchars($dataComment['id_Chapters'])?>">Signaler</a>
         </div>
         <div class="col-md-6">
             <p><?= htmlspecialchars($dataComment['comment_text']); ?></p>
         </div>
         <?php if(isset($_SESSION['username']) &&  ($_SESSION['username']== $dataComment['username'])) { ?>
-        <div class="col-md-12">
-            <a data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseModif" href="#collapseModif">Modifier</a>
-            <div class="collapse" id="collapseModif">
-                <form action="index.php?action=updateComment&amp;id=<?=htmlspecialchars($dataComment['id'])?>&amp;id_Chapters=<?=htmlspecialchars($dataComment['id_Chapters'])?>" method='post'>
+        <div class="col-md-6">
+            <a data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseModif" href="#<?= htmlspecialchars($dataComment['id']);?>">Modifier</a>
+            <div class="collapse" id="<?= htmlspecialchars($dataComment['id']);?>">
+                <form action="index.php?action=updateComment&amp;id=<?= htmlspecialchars($dataComment['id']);?>&amp;id_Chapters=<?= htmlspecialchars($dataComment['id_Chapters']);?>" method='post'>
                     <label for="newText">Votre message :</label><br>
                     <input name='newText' type='textarea' cols="5" rows="5" placeholder='Votre message'><br>
                     <button class="btn btn-primary mt-2" type='submit'>Modifier</button>

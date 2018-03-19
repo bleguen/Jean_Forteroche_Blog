@@ -7,13 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?= $title ?></title>
-    <!-- Lien vers le CSS -->
-    <link rel="stylesheet" src="../public/css/style.css"/>
     <!-- Script jQuery + BootStrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <!-- Lien vers le CSS -->
+    <link rel="stylesheet" href="public/css/style.css"/>
     <!-- TinyMCE -->
     <script src="tinymce/js/tinymce/tinymce.js"></script>
     <script type="text/javascript">
@@ -94,8 +94,8 @@
 </head>
 <body>
     <header >
-    <div class="container-fluid" style="width: 100%">
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark ">
+    <div id="myHeader" class="container-fluid " >
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
             <a class="navbar-brand" href="http://localhost/jean_forteroche_blog/index.php">Jean Forteroche</a>
             <!-- Toggler/collapsibe Button -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarList">

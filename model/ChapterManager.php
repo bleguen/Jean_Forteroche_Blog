@@ -9,7 +9,7 @@ class ChapterManager extends Manager {
     
     public function getAllChapters () {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT id, title, chapter_img, chapter_texte, DATE_FORMAT(chapter_date, \'%d/%m/%Y\') AS chapter_date_fr FROM chapters ORDER BY chapter_date ASC');
+        $req = $db->prepare('SELECT id, title, chapter_img, chapter_texte, DATE_FORMAT(chapter_date, \'%d/%m/%Y\') AS chapter_date_fr FROM chapters ORDER BY chapter_date DESC');
         $req->execute();
         
         return $req;

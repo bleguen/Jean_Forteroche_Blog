@@ -106,6 +106,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="http://localhost/jean_forteroche_blog/index.php">Accueil</a>
                     </li>
+                    <li>
+                        <a class="nav-link" href="index.php?action=presentation">Présentation</a>
+                    </li>
                     <li class="nav-item dropdown ">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown">
                             Chapitre

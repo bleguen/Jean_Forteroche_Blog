@@ -16,6 +16,8 @@ try {
             } else {
                 throw new Exception('Aucun identifiant de billet envoyé');
             }
+        } elseif($_GET['action'] == 'presentation') {
+            require('view/presentation.php');
         } elseif ($_GET['action'] == 'addComment') {
             if(isset($_GET['id']) && $_GET['id']>0) {
                 if(!empty($_POST['id_Users']) && !empty($_POST['comment_text'])) {

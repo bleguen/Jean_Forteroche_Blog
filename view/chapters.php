@@ -4,16 +4,18 @@
 
 <?php ob_start(); ?>
 <!-- Haut de page -->
-
+<section id="img_home" class="container-fluid d-flex" >
+    <button id="allChapter" class="btn btn-primary" href="#articles">Voir tout les chapitres</button>
+</section>
 <section id="articles" class="container-fluid">
     <h2 class="d-flex justify-content-center">Mes chapitres</h1>
     <!-- Div regroupant tous les chapitres -->
-    <div class="row">
+    <div id="allChapters" class="row col-12">
     <?php 
 
     while($data = $chapters->fetch()) {
         ?>
-        <div class="col-md-6">
+        <div class="allChapters col-md-4 mb-4">
             <a  class="card-text" href='index.php?action=chapter&amp;id=<?=$data['id'] ?>'>
                 <div class="card">
                     <img class="card-img" src="public/images/<?= htmlspecialchars($data['chapter_img']) ?>" alt="Card image cap">

@@ -1,4 +1,254 @@
-#myHeader {
+.container-fluid {
     padding-right: 0;
     padding-left: 0;
+}
+
+/* --------------- HOME PAGE -------------- */
+
+/* -------------- NAVBAR ---------------- */
+#navbar {
+    background-color: #024959!important;
+}
+
+h1 {
+    font-size: 35px;
+    font-weight: bold;
+}
+
+a, a:hover, .nav-item p {
+    color: #E6E7E8;
+    font-family: 'Raleway', sans-serif;
+}
+
+button.btn.btn-primary, form div input.btn.btn-primary, a.btn.btn-primary {
+    background-color: #BD7A1F;
+    border-color: #BD7A1F;
+    font-family: 'Raleway', sans-serif;
+}
+
+.dropdown-menu.show, a.dropdown-item:hover  {
+    background-color: #024959;
+    border-color: #024959;
+}
+
+a.dropdown-item, a.dropdown-item:hover {
+    color: white;
+}
+
+#name {
+    font-family: 'Raleway', sans-serif;
+    color: #BD7A1F;
+}
+
+.badge-danger {
+    background-color: #b70c0c;
+}
+
+.btn.btn-danger {
+    background-color: #b70c0c;
+}
+
+/* -------------- MODAL BOX---------------- */
+
+.modal-content {
+    background-color: #024959;
+}
+
+.modal-header h4, .modal-header button , .modal-body label, .modal-body p, .modal-body input {
+    color: white;
+}
+
+.modal-body input {
+    background-color: #BD7A1F;
+}
+
+/* ------------- HOME PAGE / NEXT ------ */
+
+#img_home {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-image: url('../images/alaska_accueil.jpg');
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    justify-content: center;
+}
+
+#allChapter {
+    align-self: center;
+    padding: 3%;
+    background-color: #F4965E;
+    border-color: #E6E7E8;
+    font-family: 'Raleway', sans-serif;
+}
+
+.btn-primary:focus, .btn:focus {
+    box-shadow: 0 0 0 .1rem #F4965E;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active:focus, .btn-primary:not(:disabled):not(.disabled):active:focus, .show > .btn-primary.dropdown-toggle:focus {
+    box-shadow: none;
+}
+
+.modal-backdrop {
+    z-index: 0;
+}
+
+#articles::before {
+    display: block;
+    height: 48px;
+    content: " ";
+}
+
+#articles h2{
+    font-family: 'Raleway', sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #BD7A1F;
+    width: 30%;
+    margin-left: 34.2%;
+    border-radius: 5px;
+    color: white;
+
+}
+
+#allChapters {
+    padding-right: 0;
+}
+
+div.allChapters.col-md-6 {
+    padding-right: 0;
+}
+
+.card-img {
+    max-height: 400px;
+}
+
+/* ----------------- PRESENTATION --------------- */
+
+#presentation {
+    min-height: 100vh;
+    margin-top: 100px;
+}
+
+#presentation h1, #articles #title, #commentaires #comments {
+    text-align: center;
+    font-size: 35px;
+    background-color: #BD7A1F;
+    border-radius: 7px;
+    color: white;
+    width: 25%;
+    padding-bottom: 5px;
+    margin-left: 37%;
+}
+
+#presentation p {
+    font-size: 20px;
+}
+
+/* ----------------- CHAPTER -------------- */
+
+#articles {
+    margin-top: 50px;
+}
+
+#commentaires h3 {
+    margin-top: 10px;
+}
+
+#articles #date {
+    text-decoration: underline;
+}
+
+#commentaires #comment-block {
+    border: 1px solid #024959;
+    border-radius: 5px;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+#comment-username {
+    color: #BD7A1F;
+}
+
+#comment-username strong {
+    margin-left: 5px;
+}
+
+#comment-date {
+    color: white;
+}
+
+#comment-user a {
+    color: #b70c0c;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#comment-user {
+    background-color: #024959;
+    border-radius: 3px;
+}
+
+#comment-text {
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+#comment-text p{
+    text-align: center;
+}
+
+#comment-modify a{
+    margin-left: 5px;
+    font-weight: bold;
+    color: #024959;
+}
+
+.modif.collapse.show, .modif.collapse.show, .modif.collapsing {
+    display: flex;
+    justify-content: center;
+}
+
+.modif.collapse.show label, .modif.collapsing label {
+    margin-left: 20%;
+}
+
+.modif.collapse.show button, .modif.collapsing button {
+    margin-left: 25%;
+}
+
+#ajoutCommentaire {
+    width: 30%;
+    border: 1px solid #024959;
+    border-radius: 5px;
+}
+
+#comment-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#comment-form input, #comment-form label {
+    text-align: center;
+}
+
+/* ----------------- FOOTER --------------- */
+
+#footer {
+    display: flex;
+    height: 80px;
+    background-color: #024959; 
+    margin-top: 40px;
+}
+
+#footer p {
+    align-self: center;
+    color: white;
+    font-size: 16px;
+
 }

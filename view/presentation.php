@@ -5,6 +5,9 @@
 <?php ob_start(); ?>
     <section id="presentation" class="container-fluid">
         <h1>Jean Forteroche</h1>
+        <div class="col-12 d-flex justify-content-center mt-3 mb-3">
+            <img src="public/images/jean_forteroche.jpg" alt="jean_forteroche">
+        </div>
         <div class="col-12">
             <p>
                 Après un long moment de réfléxion sur ma vie, j'ai décidé de prendre mon envole. L'idée de partir me trotait dans la tête depuis bien longtemps.

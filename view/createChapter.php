@@ -4,9 +4,9 @@
 
 <?php ob_start(); ?>
 
-<section class="container-fluid">
+<section class="container-fluid" style="margin-top: 60px">
     <form action="index.php?action=sendChapter" method="post" enctype="multipart/form-data">
-        <div class="form-group mt-2">
+        <div class="form-group mt-2" >
             <label for="title">Titre :</label>
             <input name="title" type="text"><br>
         </div>

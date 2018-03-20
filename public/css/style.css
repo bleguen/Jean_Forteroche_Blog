@@ -156,6 +156,10 @@ div.allChapters.col-md-6 {
     margin-top: 50px;
 }
 
+#articles .card-img {
+    max-height: 800px;
+}
+
 #commentaires h3 {
     margin-top: 10px;
 }
@@ -237,6 +241,145 @@ div.allChapters.col-md-6 {
     text-align: center;
 }
 
+/* ----------------- ADMINISTRATION ------------- */
+
+#createChapter {
+    margin-top: 100px;
+}
+
+#createChapter h2, #deleteComments h2 {
+    text-align: center;
+    font-size: 25px;
+}
+
+#deleteComments h2 {
+    margin: 20px 0px;
+}
+
+.table {
+    background-color: #024959;
+}
+#headTableChapter, #headTableComments, #headTableChapter div, #headTableComments div {
+    border: 1px solid white;
+} 
+
+#headTableChapter div, #headTableComments div {
+    font-size: 20px;
+    color: #BD7A1F;
+    text-align: center;
+}
+
+#bodyTableChapter #awesomeLogo, #bodyTableComments #awesomeLogo {
+    display: flex;
+}
+
+#bodyTableChapter div.awesomeLogo, #bodyTableChapter .centerText, #bodyTableComments div.awesomeLogo, #bodyTableComments.centerText{
+    align-self: center;
+    text-align: center;
+    color: white;
+    margin: 10px 0;
+}
+
+#threeTitle {
+    padding: 0px;
+}
+
+.centerText p {
+    margin-top: 10px!important;
+}
+
+.centerText.tiny *,.centerText.tiny span * {
+    font-size: 12px!important;
+}
+
+.hoverLine:nth-child(even) {
+    background-color:#07738c;
+}
+
+.hoverLine {
+    padding: 0px;
+}
+
+/* ----------------- ADMINISTRATION CREATE/UPDATE CHAPTER ------------- */
+
+.createChapter {
+    margin-top: 100px!important;
+}
+
+.createChapter form {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.titleChapter {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    text-align: center;
+}
+
+.imgChapter {
+    align-self: center;
+}
+
+#myImg {
+    max-width: 600px;
+    max-height: 600px;
+}
+
+.sendChapt {
+    align-self: center;
+    background-color: #BD7A1F;
+    border-color: #BD7A1F;
+}
+
+/* ----------------- INSCRIPTION PAGE -------------- */
+
+#inscription {
+    margin-top: 100px;
+}
+
+#inscription {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    min-height: 77vh;
+}
+
+#inscription h3 {
+    background-color: #BD7A1F;
+    color: white;
+    border-radius: 5px;
+    width: 20%;
+    padding: 5px 0;
+}
+
+#inscription div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#inscription form { 
+    background-color: #024959;
+    margin-top: 20px;
+    border-radius: 5px;
+    width: 30%;
+    padding: 30px 0;
+}
+
+#inscription form label {
+    color: white;
+}
+
+#inscription form input {
+    background-color: #BD7A1F;
+    color: white;
+}
+
 /* ----------------- FOOTER --------------- */
 
 #footer {
@@ -250,5 +393,4 @@ div.allChapters.col-md-6 {
     align-self: center;
     color: white;
     font-size: 16px;
-
 }

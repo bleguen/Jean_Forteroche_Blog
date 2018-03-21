@@ -69,15 +69,15 @@ class Controller {
         }
     }
 
-    public function checkImagesForNewChapter() {
+    public function checkImagesForNewChapter($img) {
 
         $target_dir = "public/images/";
-        $target_file = $target_dir . basename($_FILES["mon_fichier"]["name"]);
+        $target_file = $target_dir . basename($_FILES["$img"]["name"]);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
         // Check if image file is a actual image or fake image
         if(isset($_POST["envoyer_article"])) {
-            $check = getimagesize($_FILES["mon_fichier"]["tmp_name"]);
+            $check = getimagesize($_FILES["$img"]["tmp_name"]);
             if($check !== false) {
                 echo "File is an image - " . $check["mime"] . ".";
                 $uploadOk = 1;
@@ -88,7 +88,7 @@ class Controller {
         }
         
         // Check file size
-        if ($_FILES["mon_fichier"]["size"] > 50000000) {
+        if ($_FILES["$img"]["size"] > 50000000) {
             echo "Sorry, your file is too large.";
             $uploadOk = 0;
         }
@@ -103,8 +103,8 @@ class Controller {
             echo "Sorry, your file was not uploaded.";
         // if everything is ok, try to upload file
         } else {
-            if (move_uploaded_file($_FILES["mon_fichier"]["tmp_name"], $target_file)) {
-                echo "The file ". basename( $_FILES["mon_fichier"]["name"]). " has been uploaded.";
+            if (move_uploaded_file($_FILES["$img"]["tmp_name"], $target_file)) {
+                echo "The file ". basename( $_FILES["$img"]["name"]). " has been uploaded.";
             } else {
                 echo "Sorry, there was an error uploading your file.";
             }
@@ -167,11 +167,47 @@ class Controller {
         if($isPasswordCorrect) {
             $_SESSION['username'] = $user['username'];
             $_SESSION['id'] = $user['id'];
+            $_SESSION['mail'] = $user['mail'];
+            $_SESSION['avatar'] = $user['avatar'];
             header('location: index.php');
             
         } else {
             echo 'Erreur : Mot de passe ou nom utilisateur incorrect ';
         } 
+    }
+
+    public function updateUser($avatar, $mail, $passwordHash, $username) {
+
+        $user = $this->usersManager->getUser($username);
+
+        if($avatar == NULL) {
+            $avatar = $_SESSION['avatar'];
+        }
+
+        if($mail == NULL) {
+            $mail = $user['mail'];
+        }
+
+        if($passwordHash == NULL) {
+            $passwordHash = $user['passwordHash'];
+        } else {
+            $passwordHash = password_hash($passwordHash, PASSWORD_DEFAULT);
+        }
+
+        $update = $this->usersManager->updateUser($avatar, $mail, $passwordHash, $username);
+
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['id'] = $user['id'];
+        $_SESSION['mail'] = $user['mail'];
+        $_SESSION['avatar'] = $user['avatar'];
+
+        header('location: index.php?action=accountManagement');
+    }
+
+    public function accountManagement($username) {
+        $user = $this->usersManager->getUser($username);
+
+        require('view/accountManagement.php');
     }
 
     public function deconnection() {

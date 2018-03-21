@@ -83,11 +83,15 @@
                 <ul class="navbar-nav navbar-right">
                     <?php 
                     if(isset($_SESSION['username'])) { ?>
-                        <li class='nav-item'>
-                            <p class="navbar-text m-0 mr-2">Bienvenue à toi <strong id="name"><?= htmlspecialchars($_SESSION['username']) ?></strong></p>
-                        </li>
-                        <li class='nav-item'>
-                            <a class='nav-link btn btn-danger border-0' href='index.php?action=logout' title='Déconnexion'>Se déconnecter <i class="fas fa-sign-out-alt"></i></a>
+                        
+                        <li id="avatar" class='nav-item dropdown'>
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuAvatar" data-toggle="dropdown">
+                                <img src="public/images/<?= htmlspecialchars($_SESSION['avatar']) ?>" alt="avatar" class="avatar rounded-circle img-fluid">
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                    <a class='dropdown-item' href="index.php?action=accountManagement">Gestion Compte</a>
+                                    <a class='dropdown-item btn btn-danger border-0' href='index.php?action=logout' title='Déconnexion'>Se déconnecter <i class="fas fa-sign-out-alt"></i></a>
+                            </div>
                         </li>
                     <?php
                     } else {

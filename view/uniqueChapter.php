@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <img class="card-img col-12 col-md-6 d-flex align-self-center" src="public/images/<?= htmlspecialchars($data['chapter_img']); ?>" alt="Card image cap">
+                <img class="card-img col-12 col-md-6 d-flex align-self-center" src="public/images/<?= htmlspecialchars($data['chapter_img']); ?>" alt="<?= htmlspecialchars($data['chapter_img']) ?>">
                     <div class="card-body">
                         <p><?= $data['chapter_texte']; ?></p>
                         <p id="date"> Posté le : <?= htmlspecialchars($data['chapter_date_fr']); ?></p>
@@ -24,7 +24,7 @@
 </section>
 <section id="commentaires" class="container-fluid">
     <h3  id="comments" class="d-flex justify-content-center mb-5">Commentaires</h3>
-    <div class="row">
+    <div class="row" style="margin-left: 0px;margin-right: 0px;">
         <?php if(count($dataComments) == 0) {
         ?>  
             <div class="col-12 d-flex justify-content-center">
@@ -34,12 +34,12 @@
             } else { 
                 foreach($dataComments as $dataComment): 
         ?>
-        <div class="col-12 col-md-4 mb-3">
+        <div class="col-12 col-md-4 mb-3" style="padding-left: 8px;">
             <div id="comment-block" class="col-12 no-gutters">
                 <div id="comment-user" class="row col-12 m-0">
                     <p id="comment-username" class="col-2 col-md-3 p-0"><strong><?= htmlspecialchars($dataComment['username']); ?></strong></p>
-                    <p id="comment-date" class="col-8 col-md-6">Ajouté le : <?= htmlspecialchars($dataComment['comment_date_fr']); ?></p>
-                    <a class="col-2 col-md-3" href="index.php?action=report&amp;id=<?= htmlspecialchars($dataComment['id']);?>&amp;idChap=<?= htmlspecialchars($dataComment['id_Chapters'])?>">Signaler</a>
+                    <p id="comment-date" class="col-7 col-md-6">Ajouté le : <?= htmlspecialchars($dataComment['comment_date_fr']); ?></p>
+                    <a class="col-3 col-md-3" href="index.php?action=report&amp;id=<?= htmlspecialchars($dataComment['id']);?>&amp;idChap=<?= htmlspecialchars($dataComment['id_Chapters'])?>">Signaler</a>
                 </div>
                 <div id="comment-text" class="col-md-12">
                     <p><?= htmlspecialchars($dataComment['comment_text']); ?></p>

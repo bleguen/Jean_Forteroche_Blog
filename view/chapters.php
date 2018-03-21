@@ -18,7 +18,7 @@
         <div class="allChapters col-md-4 mb-4">
             <a  class="card-text" href='index.php?action=chapter&amp;id=<?=$data['id'] ?>'>
                 <div class="card">
-                    <img class="card-img" src="public/images/<?= htmlspecialchars($data['chapter_img']) ?>" alt="Card image cap">
+                    <img class="card-img" src="public/images/<?= htmlspecialchars($data['chapter_img']) ?>" alt="<?= htmlspecialchars($data['chapter_img']) ?>">
                         <div class="card-img-overlay text-white d-flex flex-column justify-content-end">
                             <h4 class="card-title"><?= htmlspecialchars($data['title']) ?></h4>
                             <p class="card-text"> Posté le : <?= htmlspecialchars($data['chapter_date_fr']) ?></p>

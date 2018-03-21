@@ -53,13 +53,23 @@ try {
             $controller->connection($_POST['username'], $_POST['passwordHash']);
         } elseif ((isset($_GET['action'])) && ($_GET['action'] == 'logout')) {
            $controller->deconnection();
+        } elseif (isset($_SESSION['username'])) {
+            if($_GET['action'] == 'accountManagement') {
+                $controller->accountManagement($_SESSION['username']);
+            } elseif ($_GET['action'] == 'updateUser') {
+                $controller->checkImagesForNewChapter("avatar");
+                $controller->updateUser(($_FILES['avatar']["name"]), $_POST['mail'], $_POST['passwordHash'], $_SESSION['username']);
+            }else {
+                echo 'Vous devez être connecté';
+            }
+
         } elseif(isset($_SESSION['username']) && ($_SESSION['id'] == 1)) {
             if($_GET['action'] == 'admin') {
                 $controller->admin();
             } elseif($_GET['action'] == 'sendChapter') { 
                 if(isset($_POST['title'])) {
                     if (strlen($_POST['title']) > 0 && strlen($_FILES['mon_fichier']["name"]) >0) {
-                        $controller->checkImagesForNewChapter();
+                        $controller->checkImagesForNewChapter("mon_fichier");
                         $controller->addChapter($_POST['title'], ($_FILES['mon_fichier']["name"]), $_POST['text']);
                     } else {
                         echo "Il manque un titre ET/OU une image";

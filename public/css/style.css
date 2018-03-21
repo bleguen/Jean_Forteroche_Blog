@@ -8,6 +8,8 @@
 /* -------------- NAVBAR ---------------- */
 #navbar {
     background-color: #024959!important;
+    display: flex;
+    justify-content: center;
 }
 
 h1 {
@@ -18,6 +20,32 @@ h1 {
 a, a:hover, .nav-item p {
     color: #E6E7E8;
     font-family: 'Raleway', sans-serif;
+}
+
+#avatar {
+    width: 65px;
+}
+
+.avatar {
+    border: 2px solid #BD7A1F;
+}
+
+#navbarDropdownMenuAvatar.dropdown-toggle::after {
+    margin-left: 1.255em!important;
+    vertical-align: 0.8em!important;
+    margin-top: 3px;
+}
+
+#navbarDropdownMenuAvatar {
+    padding-bottom: 0px;
+    padding-top: 0px;
+    margin-top: 20px;
+}
+
+
+
+.dropdown-menu.dropdown-menu-right.show {
+    padding-bottom: 0px;
 }
 
 button.btn.btn-primary, form div input.btn.btn-primary, a.btn.btn-primary {
@@ -44,7 +72,7 @@ a.dropdown-item, a.dropdown-item:hover {
     background-color: #b70c0c;
 }
 
-.btn.btn-danger {
+.btn.btn-danger, .btn.btn-danger:hover {
     background-color: #b70c0c;
 }
 
@@ -132,7 +160,7 @@ div.allChapters.col-md-6 {
 
 #presentation {
     min-height: 100vh;
-    margin-top: 100px;
+    margin-top: 130px;
 }
 
 #presentation h1, #articles #title, #commentaires #comments {
@@ -153,7 +181,7 @@ div.allChapters.col-md-6 {
 /* ----------------- CHAPTER -------------- */
 
 #articles {
-    margin-top: 50px;
+    margin-top: 90px;
 }
 
 #articles .card-img {
@@ -329,7 +357,7 @@ div.allChapters.col-md-6 {
     max-height: 600px;
 }
 
-.sendChapt {
+.sendChapt, .sendChapt:hover, .sendChapt:focus {
     align-self: center;
     background-color: #BD7A1F;
     border-color: #BD7A1F;
@@ -393,4 +421,51 @@ div.allChapters.col-md-6 {
     align-self: center;
     color: white;
     font-size: 16px;
+}
+
+@media (max-width: 767.98px) { 
+    a.dropdown-item:hover {
+        border: 1px solid;
+    }
+        
+    #navbarDropdownMenuAvatar.dropdown-toggle::after {
+            margin-left: 1.7em!important;
+            vertical-align: 0.8em!important;
+            margin-top: 3px;
+    }
+
+    .dropdown-menu.dropdown-menu-right.show {
+        padding-top: 0px;
+        margin-top: 0px;
+        
+    }
+    #articles {
+        margin-top: 70px;
+    }
+
+    #presentation h1, #articles h2, #articles #title, #commentaires #comments, #inscription form, #inscription h3 {
+        margin: 10%;
+        width: 80%;
+    }
+
+    #presentation h1 {
+        margin-top: 150px;
+    }
+
+    #ajoutCommentaire {
+        width: 80%;
+        margin: 10%;
+    }
+
+    .createChapter, #createChapter, #inscription {
+        margin-top: 150px !important;
+    }
+
+    #myImg {
+        width: 100%;
+    }
+
+    #headTableComments div:nth-child(3), #headTableComments div:nth-child(6) {
+        padding: 1px;
+    }
 }

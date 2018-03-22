@@ -1,6 +1,6 @@
 <!-- Le controleur fait appel aux modèles, prend la décision et renvoie les infos aux views -->
 <?php 
-require_once('model/ChapterManager.php');
+require_once('model/ChapterManager.php');  
 require_once('model/CommentManager.php');
 require_once('model/UsersManager.php');
 
@@ -79,34 +79,34 @@ class Controller {
         if(isset($_POST["envoyer_article"])) {
             $check = getimagesize($_FILES["$img"]["tmp_name"]);
             if($check !== false) {
-                echo "File is an image - " . $check["mime"] . ".";
+                throw new Exception ("Le fichier est une image : " . $check["mime"] . ".");
                 $uploadOk = 1;
             } else {
-                echo "File is not an image.";
+                throw new Exception ("Le fichier n'est pas une iamge");
                 $uploadOk = 0;
             }
         }
         
         // Check file size
         if ($_FILES["$img"]["size"] > 50000000) {
-            echo "Sorry, your file is too large.";
+            throw new Exception ("Désolé votre image est trop grande");
             $uploadOk = 0;
         }
         // Allow certain file formats
         if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
         && $imageFileType != "gif" ) {
-            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+            throw new Exception ("Désolé, seulement les extensions JPG, JPEG, PNG & GIF sont autorisé.");
             $uploadOk = 0;
         }
         // Check if $uploadOk is set to 0 by an error
         if ($uploadOk == 0) {
-            echo "Sorry, your file was not uploaded.";
+            throw new Exception ("Désolé, votre fichier n'as pas été téléchargé.");
         // if everything is ok, try to upload file
         } else {
             if (move_uploaded_file($_FILES["$img"]["tmp_name"], $target_file)) {
-                echo "The file ". basename( $_FILES["$img"]["name"]). " has been uploaded.";
+                throw new Exception ("Votre fichier ". basename( $_FILES["$img"]["name"]). " a été téléchargé.");
             } else {
-                echo "Sorry, there was an error uploading your file.";
+                throw new Exception ("Désolé, votre fichier n'as pas été téléchargé");
             }
         }
     }
@@ -172,7 +172,7 @@ class Controller {
             header('location: index.php');
             
         } else {
-            echo 'Erreur : Mot de passe ou nom utilisateur incorrect ';
+            throw new Exception ('Erreur : Mot de passe ou nom utilisateur incorrect ');
         } 
     }
 
@@ -182,15 +182,21 @@ class Controller {
 
         if($avatar == NULL) {
             $avatar = $_SESSION['avatar'];
+        } else {
+            $this->checkImagesForNewChapter("avatar");
         }
 
         if($mail == NULL) {
             $mail = $user['mail'];
+        } else {
+            $this->checkEmail($_POST['mail']);
         }
 
         if($passwordHash == NULL) {
             $passwordHash = $user['passwordHash'];
         } else {
+            $this->checkPasswordQuality($_POST['passwordHash']);
+            $this->checkPasswordCompare($_POST['passwordHash'], $_POST['passwordHashSecond']);
             $passwordHash = password_hash($passwordHash, PASSWORD_DEFAULT);
         }
 
@@ -222,7 +228,7 @@ class Controller {
         $user = $this->usersManager->getUser($username);
 
         if($username == $user['username']) {
-            echo "Ce pseudo est déjà utilisé";
+            throw new Exception ("Ce pseudo est déjà utilisé");
         }
         
         return preg_match (" #^[a-zA-Z0-9_]{5,16}$# " , $username);
@@ -230,14 +236,18 @@ class Controller {
     }
 
     public function checkPasswordQuality($pass) {
-        return preg_match("#\w{8,25}#", $pass) && preg_match("#[A-Z]+#", $pass) && preg_match("#[0-9]+#", $pass);
+        if(preg_match("#\w{8,25}#", $pass) && preg_match("#[A-Z]+#", $pass) && preg_match("#[0-9]+#", $pass)) {
+            return preg_match("#\w{8,25}#", $pass) && preg_match("#[A-Z]+#", $pass) && preg_match("#[0-9]+#", $pass);
+        } else {
+            throw new Exception ("Votre mot de passe doit avoir au minimum une majuscule et un chiffre et 8 caractères minimum");
+        }
     }
 
     public function checkPasswordCompare($pass, $secondPass) {
         if($pass == $secondPass) {
             return true;
         } else {
-            echo "Les mots de passe ne correspondent pas";
+            throw new Exception ("Les mots de passe ne correspondent pas");
         }
     }
 

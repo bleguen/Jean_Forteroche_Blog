@@ -6,6 +6,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Blog écrivain de Jean Forteroche">
+    <meta name="keywords" content="Blog, écrivain, Jean, Forteroche, chapitre, alaska, faune, montagne">
+    <meta name="author" content="Jean Forteroche">
     <title><?= $title ?></title>
     <!-- Script jQuery + BootStrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -42,7 +45,7 @@
     <meta property="og:title" content="Jean Forteroche Blog">
     <meta property="og:type" content="Website">
     <meta property="og:url" content="http://#">
-    <meta property="og:images" content="">
+    <meta property="og:images" content="../images/alaska_accueil.jpg">
     <meta property="og:site_name" content="Jean Forteroche Blog">
     <!-- Meta Twitter -->
     <meta name="twitter:card" content="summary_large_image">
@@ -51,7 +54,7 @@
     <meta name="twitter:description" content="Blog de Jean Forteroche, voyage en Alaska">
     <meta name="twitter:creator" content="@BenjaminLeGuen">
     <meta name="twitter:url" content="http://#">
-    <meta name="twitter:images:src" content="http://#">
+    <meta name="twitter:images:src" content="../images/alaska_accueil.jpg">
 </head>
 <body>
     <header >

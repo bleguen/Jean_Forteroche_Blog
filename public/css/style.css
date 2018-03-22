@@ -180,7 +180,7 @@ div.allChapters.col-md-6 {
 
 /* ----------------- CHAPTER -------------- */
 
-#articles {
+#articles h2 {
     margin-top: 90px;
 }
 
@@ -271,11 +271,8 @@ div.allChapters.col-md-6 {
 
 /* ----------------- ADMINISTRATION ------------- */
 
-#createChapter {
-    margin-top: 100px;
-}
-
 #createChapter h2, #deleteComments h2 {
+    margin-top: 135px;
     text-align: center;
     font-size: 25px;
 }
@@ -357,7 +354,7 @@ div.allChapters.col-md-6 {
     max-height: 600px;
 }
 
-.sendChapt, .sendChapt:hover, .sendChapt:focus {
+.sendChapt, .sendChapt:hover, .sendChapt:focus, .submitFormGestion {
     align-self: center;
     background-color: #BD7A1F;
     border-color: #BD7A1F;
@@ -376,7 +373,7 @@ div.allChapters.col-md-6 {
     min-height: 77vh;
 }
 
-#inscription h3 {
+#inscription h3, #gestionCompte h1 {
     background-color: #BD7A1F;
     color: white;
     border-radius: 5px;
@@ -391,7 +388,7 @@ div.allChapters.col-md-6 {
     align-items: center;
 }
 
-#inscription form { 
+#inscription form, #formAccount { 
     background-color: #024959;
     margin-top: 20px;
     border-radius: 5px;
@@ -399,13 +396,39 @@ div.allChapters.col-md-6 {
     padding: 30px 0;
 }
 
-#inscription form label {
+#inscription form label, .gestionForm label, .gestionForm h3, .gestionForm p {
     color: white;
 }
 
-#inscription form input {
+#inscription form input, .gestionForm input {
     background-color: #BD7A1F;
     color: white;
+}
+
+/* ----------------- ACCOUNT MANAGEMENT --------------- */
+#gestionCompte {
+    margin-top: 120px;
+}
+
+#gestionCompte h1 {
+    width: 30%;
+    margin-left: 35%;
+    text-align: center;
+}
+
+.avatarGestion {
+    width: 70px;
+}
+
+.gestionForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.submitFormGestion {
+    width: 30%;
+    margin-left: 33%;
 }
 
 /* ----------------- FOOTER --------------- */
@@ -452,9 +475,27 @@ div.allChapters.col-md-6 {
         margin-top: 150px;
     }
 
-    #ajoutCommentaire {
+    #ajoutCommentaire, #gestionCompte {
         width: 80%;
         margin: 10%;
+    }
+
+    #gestionCompte h1 {
+        margin: 0;
+        margin-top: 120px;
+        width: 100%;
+    }
+
+    #gestionCompte form {
+        width: 150%;
+    }
+
+    #gestionCompte h3 {
+        font-size: 20px;
+    }
+
+    #gestionCompte p {
+        font-size: 14px;
     }
 
     .createChapter, #createChapter, #inscription {

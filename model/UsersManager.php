@@ -1,6 +1,6 @@
 <?php
 
-require_once("model/manager.php");
+require_once("model/Manager.php");
 
 class UsersManager extends Manager {
 
@@ -15,7 +15,7 @@ class UsersManager extends Manager {
     
     public function postUser($username, $passwordHash, $mail) {
 
-        $passwordHash = password_hash($_POST['passwordHash'], PASSWORD_DEFAULT);
+        $passwordHash = password_hash($passwordHash, PASSWORD_DEFAULT);
 
         $db = $this->dbConnect();
         $user = $db->prepare('INSERT INTO users (username, passwordHash, mail, inscription_date) VALUES (?, ?, ?, CURDATE())');

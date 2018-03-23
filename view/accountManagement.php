@@ -22,7 +22,8 @@
                     
                     <div class="gestionForm form-group">
                         <h3>Changer votre e-mail </h3>
-                        <p>Votre adresse e-mail actuelle : <?= htmlspecialchars($user['mail']) ?></p>
+                        <p>Votre adresse e-mail actuelle :<br>
+                        <?= htmlspecialchars($user['mail']) ?></p>
                         <label for="mail">Changer votre e-mail</label><br>
                         <input name='mail' type='email' placeholder='Nouvel adresse e-mail'><br>
                     </div>

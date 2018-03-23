@@ -26,6 +26,9 @@ class Controller {
     public function chapter($id) {
         
         $chapter = $this->chapterManager->getChapter($id);
+        if($chapter == false) {
+            throw new Exception('Chapitre inexistant !');
+        }
 
         $comments = $this->commentsManager->getComments($id);
 
@@ -62,10 +65,10 @@ class Controller {
 
     public function imgTest($id) { 
         $chapter = $this->chapterManager->getChapter($id);
-        if(empty($_FILES['mon_fichier']["name"])) {
+        if(isset($_FILES["mon_fichier"]["name"])) {
             return $chapter['chapter_img'];
         } else {
-            return ($_FILES['mon_fichier']["name"]);
+            self::checkImagesForNewChapter("mon_fichier");;
         }
     }
 
@@ -79,10 +82,10 @@ class Controller {
         if(isset($_POST["envoyer_article"])) {
             $check = getimagesize($_FILES["$img"]["tmp_name"]);
             if($check !== false) {
-                throw new Exception ("Le fichier est une image : " . $check["mime"] . ".");
+                //throw new Exception ("Le fichier est une image : " . $check["mime"] . ".");
                 $uploadOk = 1;
             } else {
-                throw new Exception ("Le fichier n'est pas une iamge");
+                //throw new Exception ("Le fichier n'est pas une iamge");
                 $uploadOk = 0;
             }
         }
@@ -104,7 +107,7 @@ class Controller {
         // if everything is ok, try to upload file
         } else {
             if (move_uploaded_file($_FILES["$img"]["tmp_name"], $target_file)) {
-                throw new Exception ("Votre fichier ". basename( $_FILES["$img"]["name"]). " a été téléchargé.");
+                //throw new Exception ("Votre fichier ". basename( $_FILES["$img"]["name"]). " a été téléchargé.");
             } else {
                 throw new Exception ("Désolé, votre fichier n'as pas été téléchargé");
             }

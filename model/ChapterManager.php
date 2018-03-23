@@ -3,13 +3,13 @@ fonctions afin de faire appel aux chapitres, chapitre -->
 
 <?php
 
-require_once("model/manager.php");
+require_once("model/Manager.php");
 
 class ChapterManager extends Manager {
     
     public function getAllChapters () {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT id, title, chapter_img, chapter_texte, DATE_FORMAT(chapter_date, \'%d/%m/%Y\') AS chapter_date_fr FROM chapters ORDER BY chapter_date DESC');
+        $req = $db->prepare('SELECT id, title, chapter_img, chapter_texte, DATE_FORMAT(chapter_date, \'%d/%m/%Y\') AS chapter_date_fr FROM chapters ORDER BY chapter_date ASC');
         $req->execute();
         
         return $req;

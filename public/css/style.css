@@ -22,24 +22,18 @@ a, a:hover, .nav-item p {
     font-family: 'Raleway', sans-serif;
 }
 
-#avatar {
-    width: 65px;
+img.avatar {
+    width: 50px;
+    height: 50px;
 }
 
 .avatar {
     border: 2px solid #BD7A1F;
 }
 
-#navbarDropdownMenuAvatar.dropdown-toggle::after {
-    margin-left: 1.255em!important;
-    vertical-align: 0.8em!important;
-    margin-top: 3px;
-}
-
 #navbarDropdownMenuAvatar {
     padding-bottom: 0px;
     padding-top: 0px;
-    margin-top: 20px;
 }
 
 
@@ -179,7 +173,9 @@ div.allChapters.col-md-6 {
 }
 
 /* ----------------- CHAPTER -------------- */
-
+#articles #title {
+    margin-top: 100px;
+}
 #articles h2 {
     margin-top: 90px;
 }
@@ -328,7 +324,7 @@ div.allChapters.col-md-6 {
 /* ----------------- ADMINISTRATION CREATE/UPDATE CHAPTER ------------- */
 
 .createChapter {
-    margin-top: 100px!important;
+    margin-top: 120px!important;
 }
 
 .createChapter form {
@@ -418,6 +414,7 @@ div.allChapters.col-md-6 {
 
 .avatarGestion {
     width: 70px;
+    height: 70px;
 }
 
 .gestionForm {
@@ -429,6 +426,13 @@ div.allChapters.col-md-6 {
 .submitFormGestion {
     width: 30%;
     margin-left: 33%;
+}
+
+/* ----------------- ERRORS --------------- */
+
+#errors {
+    margin-top: 120px;
+    min-height: 100vh;
 }
 
 /* ----------------- FOOTER --------------- */
@@ -450,12 +454,6 @@ div.allChapters.col-md-6 {
     a.dropdown-item:hover {
         border: 1px solid;
     }
-        
-    #navbarDropdownMenuAvatar.dropdown-toggle::after {
-            margin-left: 1.7em!important;
-            vertical-align: 0.8em!important;
-            margin-top: 3px;
-    }
 
     .dropdown-menu.dropdown-menu-right.show {
         padding-top: 0px;
@@ -469,6 +467,11 @@ div.allChapters.col-md-6 {
     #presentation h1, #articles h2, #articles #title, #commentaires #comments, #inscription form, #inscription h3 {
         margin: 10%;
         width: 80%;
+    }
+
+    #articles h2 {
+        font-size: 30px;
+        margin-top:90px;
     }
 
     #presentation h1 {

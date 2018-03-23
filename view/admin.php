@@ -61,7 +61,7 @@
     ?>
       <div id="awesomeLogo"class="hoverLine row col-12 no-gutters">
           <div class="awesomeLogo d-none d-sm-block col-sm-1"><?= $i++ ?></div>
-          <div class="awesomeLogo d-none d-sm-block col-sm-1"><?= htmlspecialchars($comment['id_Users'])?></div>
+          <div class="awesomeLogo d-none d-sm-block col-sm-1"><?= htmlspecialchars($comment['username'])?></div>
           <div class="awesomeLogo col-4 col-sm-6 text-truncate"><a href="index.php?action=chapter&amp;id=<?= $comment['id_Chapters'];?>"><?=htmlspecialchars($comment['comment_text']); ?></a></div>
           <div class="awesomeLogo d-none d-sm-block col-sm-1"><?=htmlspecialchars($comment['id_Chapters']); ?></div>
           <div class="awesomeLogo col-4 col-sm-1"><a href="index.php?action=deleteComment&amp;id=<?= $comment['id'];?>" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a></div>

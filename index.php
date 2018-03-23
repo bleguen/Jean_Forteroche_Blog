@@ -4,7 +4,7 @@
 
 session_start();
 
-require('controller/controller.php');
+require('controller/Controller.php');
 
 $controller = new Controller();
 
@@ -12,7 +12,7 @@ try {
     if(isset($_GET['action'])){
         // Pour afficher les chapitres
         if($_GET['action'] == 'chapter') {
-            if(isset($_GET['id']) && $_GET['id']>0) {
+            if(isset($_GET['id']) && $_GET['id']>0 ) {
                 $controller->chapter($_GET['id']);
             } else {
                 throw new Exception('Aucun identifiant de billet envoyé');
@@ -86,7 +86,6 @@ try {
                     if(isset($_POST['title'])) {
                         if (strlen($_POST['title']) > 0) {
                             $monImage = $controller->imgTest($_GET['id']);
-                            $controller->checkImagesForNewChapter();
                             $controller->updateChapter($_GET['id'], $_POST['title'], $monImage, $_POST['text']);
                         }
                     }
@@ -95,17 +94,13 @@ try {
                 } elseif($_GET['action'] == 'deleteComment') {
                     $controller->deleteComment($_GET['id']);
                 }
-            } else {  
-                throw new Exception ('Vous devez être admin');
             }
             // Pour accéder à la page gestion de compte
             if($_GET['action'] == 'accountManagement') {
                 $controller->accountManagement($_SESSION['username']);
             // Pour mettre à jour les données utilisateur 
             } elseif ($_GET['action'] == 'updateUser') {
-                    $controller->updateUser(($_FILES['avatar']["name"]), $_POST['mail'], $_POST['passwordHash'], $_SESSION['username']);   
-            } else {
-                throw new Exception ('Vous devez être connecté');
+                    $controller->updateUser(($_FILES['avatar']["name"]), $_POST['mail'], $_POST['passwordHash'], $_SESSION['username']);
             }
         } else {
             throw new Exception ("Vous devez être connecté");
@@ -115,5 +110,6 @@ try {
         $controller->listChapters();
     }
 } catch(Exception $e) {
-    echo $e->getMessage();
+    $errors = $e->getMessage();
+    require('view/getErrors.php');
 }

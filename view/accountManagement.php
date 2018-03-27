@@ -25,18 +25,22 @@
                         <p>Votre adresse e-mail actuelle :<br>
                         <?= htmlspecialchars($user['mail']) ?></p>
                         <label for="mail">Changer votre e-mail</label><br>
-                        <input name='mail' type='email' placeholder='Nouvel adresse e-mail'><br>
+                        <input name='mailInscrip' type='email' placeholder='Nouvel adresse e-mail'><br>
+                        <div class="unvalidEmail"></div>
                     </div>
                     
                     <div class="gestionForm form-group">
                         <h3>Changer votre mot de passe </h3>
                         <label for="">Mot de passe :</label><br>
-                        <input name='passwordHash' type='password' placeholder='Votre nouveau mot de passe'><br>
+                        <input name='passwordHashInscrip' type='password' placeholder='Votre nouveau mot de passe'><br>
+                        <div class="unvalidPassword"></div>
                     </div>
                     <div class="gestionForm form-group">
                         <label for="passwordHashSecond"> Confirmation Mot de passe : </label><br>
-                        <input name='passwordHashSecond' type='password' placeholder='Confirmer votre mot de passe'><br>
+                        <input name='passwordHashSecondInscrip' type='password' placeholder='Confirmer votre mot de passe'><br>
+                        <div class="unvalidPasswordSecond"></div>
                     </div>
+                    <p class="validInscrip"></p>
                     <input class="submitFormGestion btn btn-primary" type='submit' value='Submit'>
                 </form>
             </div>

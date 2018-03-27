@@ -49,9 +49,10 @@
                     <a data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseModif" href="#<?= htmlspecialchars($dataComment['id']);?>">Modifier</a>
                     <div class="modif collapse" id="<?= htmlspecialchars($dataComment['id']);?>">
                         <form action="index.php?action=updateComment&amp;id=<?= htmlspecialchars($dataComment['id']);?>&amp;id_Chapters=<?= htmlspecialchars($dataComment['id_Chapters']);?>" method='post'>
-                            <label for="newText">Votre message :</label><br>
-                            <input name='newText' type='textarea' cols="5" rows="5" placeholder='Votre message'><br>
-                            <button class="btn btn-primary mt-2" type='submit'>Modifier</button>
+                            <label for="new_Text">Votre message :</label><br>
+                            <textarea id="new_Text" name='new_Text' placeholder='Votre message'></textarea><br>
+                            <div class="unvalidMessage"></div>
+                            <button class="updateComment btn btn-primary mt-2" type='submit'>Modifier</button>
                         </form>
                     </div>
                 </div>
@@ -83,8 +84,9 @@
                 <textarea name='id_Chapters' cols='1' rows='1' style='display: none'> <?=htmlspecialchars($data['id'])?></textarea>
                 <input name='id_Users' type='text' value ='<?=htmlspecialchars(intval($_SESSION['id']))?>' style='display: none'>
                 <label for="comment_text">Votre message :</label><br>
-                <input name='comment_text' type='textarea' cols="5" rows="5" placeholder='Votre message'><br>
-                <button class="btn btn-primary mt-2" type='submit'>Envoyer</button>
+                <textarea id="comment_text" name='comment_text' placeholder='Votre message'></textarea><br>
+                <div class="unvalidMessageInside"></div>
+                <button id="sendComment" class="btn btn-primary mt-2" type='submit'>Envoyer</button>
             </div>
         </form>
     </div>

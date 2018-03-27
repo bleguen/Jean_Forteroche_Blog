@@ -8,8 +8,12 @@
 /* -------------- NAVBAR ---------------- */
 #navbar {
     background-color: #024959!important;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
 }
 
 h1 {
@@ -95,11 +99,15 @@ a.dropdown-item, a.dropdown-item:hover {
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
-    justify-content: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
 }
 
 #allChapter {
-    align-self: center;
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
     padding: 3%;
     background-color: #F4965E;
     border-color: #E6E7E8;
@@ -107,11 +115,13 @@ a.dropdown-item, a.dropdown-item:hover {
 }
 
 .btn-primary:focus, .btn:focus {
-    box-shadow: 0 0 0 .1rem #F4965E;
+    -webkit-box-shadow: 0 0 0 .1rem #F4965E;
+            box-shadow: 0 0 0 .1rem #F4965E;
 }
 
 .btn-primary:not(:disabled):not(.disabled).active:focus, .btn-primary:not(:disabled):not(.disabled):active:focus, .show > .btn-primary.dropdown-toggle:focus {
-    box-shadow: none;
+    -webkit-box-shadow: none;
+            box-shadow: none;
 }
 
 .modal-backdrop {
@@ -238,8 +248,12 @@ div.allChapters.col-md-6 {
 }
 
 .modif.collapse.show, .modif.collapse.show, .modif.collapsing {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
 }
 
 .modif.collapse.show label, .modif.collapsing label {
@@ -257,8 +271,13 @@ div.allChapters.col-md-6 {
 }
 
 #comment-form {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
 }
 
 #comment-form input, #comment-form label {
@@ -291,11 +310,15 @@ div.allChapters.col-md-6 {
 }
 
 #bodyTableChapter #awesomeLogo, #bodyTableComments #awesomeLogo {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
 }
 
 #bodyTableChapter div.awesomeLogo, #bodyTableChapter .centerText, #bodyTableComments div.awesomeLogo, #bodyTableComments.centerText{
-    align-self: center;
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
     text-align: center;
     color: white;
     margin: 10px 0;
@@ -328,21 +351,35 @@ div.allChapters.col-md-6 {
 }
 
 .createChapter form {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
 }
 
 .titleChapter {
-    align-self: center;
+    -ms-flex-item-align: center;
+        align-self: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     width: 50%;
     text-align: center;
 }
 
 .imgChapter {
-    align-self: center;
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
 }
 
 #myImg {
@@ -350,8 +387,10 @@ div.allChapters.col-md-6 {
     max-height: 600px;
 }
 
-.sendChapt, .sendChapt:hover, .sendChapt:focus, .submitFormGestion {
-    align-self: center;
+.sendChapt, .updateChapter, .updateChapter:hover, .updateChapter:focus, .sendChapt:hover, .sendChapt:focus, .submitFormGestion {
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
     background-color: #BD7A1F;
     border-color: #BD7A1F;
 }
@@ -363,8 +402,12 @@ div.allChapters.col-md-6 {
 }
 
 #inscription {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     text-align: center;
     min-height: 77vh;
 }
@@ -378,10 +421,19 @@ div.allChapters.col-md-6 {
 }
 
 #inscription div {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 
 #inscription form, #formAccount { 
@@ -401,6 +453,12 @@ div.allChapters.col-md-6 {
     color: white;
 }
 
+.unvalidUsername, .unvalidPassword, .unvalidPasswordSecond, .unvalidEmail, #champs, .validInscrip, .unvalidTitle, .unvalidMessage, .unvalidMessageInside {
+    text-align: center;
+    display: none;
+    color: red;
+}
+
 /* ----------------- ACCOUNT MANAGEMENT --------------- */
 #gestionCompte {
     margin-top: 120px;
@@ -418,9 +476,16 @@ div.allChapters.col-md-6 {
 }
 
 .gestionForm {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 
 .submitFormGestion {
@@ -438,6 +503,8 @@ div.allChapters.col-md-6 {
 /* ----------------- FOOTER --------------- */
 
 #footer {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     height: 80px;
     background-color: #024959; 
@@ -445,7 +512,9 @@ div.allChapters.col-md-6 {
 }
 
 #footer p {
-    align-self: center;
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
     color: white;
     font-size: 16px;
 }

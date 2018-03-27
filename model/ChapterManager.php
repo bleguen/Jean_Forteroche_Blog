@@ -36,7 +36,7 @@ class ChapterManager extends Manager {
     
     public function updateChapter($id, $title, $chapter_img, $chapter_text) {
         $db = $this->dbConnect();
-        $updateChapter = $db->prepare("UPDATE `chapters` SET `title` = ?, `chapter_img` = ?, `chapter_texte` = ?, `chapter_date` = NOW() WHERE `id` = ?");
+        $updateChapter = $db->prepare("UPDATE `chapters` SET `title` = ?, `chapter_img` = ?, `chapter_texte` = ? WHERE `id` = ?");
         $updateChapter->execute(array($title, $chapter_img, $chapter_text, $id));
 
         return $updateChapter;

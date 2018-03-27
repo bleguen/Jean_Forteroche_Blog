@@ -18,7 +18,7 @@
                 <input type="file" name="mon_fichier" id="mon_fichier"/><br>
             </div>
             <textarea id="texte" name="text" rows="25" ><?= $data['chapter_texte']; ?></textarea>
-            <input class="sendChapt btn btn-primary mt-2" name="envoyer_article" type="submit" value="Modifier">
+            <input class="updateChapter btn btn-primary mt-2" name="envoyer_article" type="submit" value="Modifier">
         </form>
     </div>
  </section>

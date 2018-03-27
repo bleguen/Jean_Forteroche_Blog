@@ -9,22 +9,28 @@
     <h3>Inscription</h3>
         <form action='index.php?action=addUser' method='post'>
             <div class="form-group">
-                <label for="username">Votre pseudo : </label><br>
-                <input name='username' type='text' placeholder ='Pseudo'><br>
+                <label for="usernameInscrip">Votre pseudo : </label><br>
+                <input name='usernameInscrip' type='text' placeholder ='Pseudo'><br>
+                <div class="unvalidUsername"></div>
             </div>
             <div class="form-group">
-                <label for="passwordHash">Mot de passe :</label><br>
-                <input name='passwordHash' type='password' placeholder='Votre mot de passe'><br>
+                <label for="passwordHashInscrip">Mot de passe :</label><br>
+                <input name='passwordHashInscrip' type='password' placeholder='Votre mot de passe'><br>
+                <div class="unvalidPassword"></div>
             </div>
             <div class="form-group">
-                <label for="passwordHashSecond"> Confirmation Mot de passe : </label><br>
-                <input name='passwordHashSecond' type='password' placeholder='Confirmer votre mot de passe'><br>
+                <label for="passwordHashSecondInscrip"> Confirmation Mot de passe : </label><br>
+                <input name='passwordHashSecondInscrip' type='password' placeholder='Confirmer votre mot de passe'><br>
+                <div class="unvalidPasswordSecond"></div>
             </div>
             <div class="form-group">
-                <label for="mail">Adresse e-mail :</label><br>
-                <input name='mail' type='email' placeholder='Votre e-mail'><br>
+                <label for="mailInscrip">Adresse e-mail :</label><br>
+                <input name='mailInscrip' type='email' placeholder='Votre e-mail'><br>
+                <div class="unvalidEmail"></div>
             </div>
-            <input class="btn btn-primary" type='submit' value='Submit'>
+            <p class="validInscrip"></p>
+            <input id="validInscription" class="btn btn-primary" type='submit' value='Envoyer'>
+            
         </form>
     </div>
 </section>

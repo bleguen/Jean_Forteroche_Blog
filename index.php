@@ -36,18 +36,18 @@ try {
             $controller->reported($_GET['id'], $_GET['idChap']);
         // Pour modifier un commentaire
         } elseif($_GET['action'] == 'updateComment') {
-            $controller->updateComment($_POST['newText'], $_GET['id'], $_GET['id_Chapters']);
+            $controller->updateComment($_POST['new_Text'], $_GET['id'], $_GET['id_Chapters']);
         // Pour afficher la page d'inscription
         } elseif($_GET['action'] == 'inscription') {
             $controller->pageInscription();
         // Pour ajouter un utilisateur, controle du pseudo, des mdp et de l'email puis envoi vers bdd
         } elseif($_GET['action'] == 'addUser') {
-            if(isset($_POST['username']) && $controller->checkUsername($_POST['username'])) {
-                if(isset($_POST['passwordHash']) && $controller->checkPasswordCompare($_POST['passwordHash'], $_POST['passwordHashSecond']) && $controller->checkPasswordQuality($_POST['passwordHash'])) {
-                    if (!$controller->checkEmail($_POST['mail'])) {
+            if(isset($_POST['usernameInscrip']) && $controller->checkUsername($_POST['usernameInscrip'])) {
+                if(isset($_POST['passwordHashInscrip']) && $controller->checkPasswordCompare($_POST['passwordHashInscrip'], $_POST['passwordHashSecondInscrip']) && $controller->checkPasswordQuality($_POST['passwordHashInscrip'])) {
+                    if (!$controller->checkEmail($_POST['mailInscrip'])) {
                         throw new Exception('L"email ne me convient pas !');
                     } else {
-                        $controller->inscription($_POST['username'], $_POST['passwordHash'], $_POST['mail']);
+                        $controller->inscription($_POST['usernameInscrip'], $_POST['passwordHashInscrip'], $_POST['mailInscrip']);
                     }
                 } else {
                     throw new Exception('Les mots de passe ne correspond pas au attente, vérifier sa longueur, une minuscule, majuscule etc !');
@@ -100,7 +100,7 @@ try {
                 $controller->accountManagement($_SESSION['username']);
             // Pour mettre à jour les données utilisateur 
             } elseif ($_GET['action'] == 'updateUser') {
-                    $controller->updateUser(($_FILES['avatar']["name"]), $_POST['mail'], $_POST['passwordHash'], $_SESSION['username']);
+                    $controller->updateUser(($_FILES['avatar']["name"]), $_POST['mailInscrip'], $_POST['passwordHashInscrip'], $_SESSION['username']);
             }
         } else {
             throw new Exception ("Vous devez être connecté");

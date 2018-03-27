@@ -23,7 +23,7 @@
     <script src="tinymce/js/tinymce/tinymce.js"></script>
     <script type="text/javascript">
         tinymce.init({
-            selector : "textarea",
+            selector : "textarea #texte",
             theme : "modern",
             language: "fr_FR",
             height: 450,
@@ -127,8 +127,9 @@
                                             </div>
                                             <div>
                                                 <br>
-                                                <input class='btn btn-primary' type='submit' value='Valider' />
+                                                <input id="validConnex" class='btn btn-primary' type='submit' value='Valider' />
                                             </div>
+                                            <p id="champs"><p>
                                         </form>
                                         <div class=" row mt-3">
                                             <p class="col-md-8 align-self-center m-0">Vous n'etes pas encore inscris, cliquez-ici : </p>

@@ -192,14 +192,14 @@ class Controller {
         if($mail == NULL) {
             $mail = $user['mail'];
         } else {
-            $this->checkEmail($_POST['mail']);
+            $this->checkEmail($_POST['mailInscrip']);
         }
 
         if($passwordHash == NULL) {
             $passwordHash = $user['passwordHash'];
         } else {
-            $this->checkPasswordQuality($_POST['passwordHash']);
-            $this->checkPasswordCompare($_POST['passwordHash'], $_POST['passwordHashSecond']);
+            $this->checkPasswordQuality($_POST['passwordHashInscrip']);
+            $this->checkPasswordCompare($_POST['passwordHashInscrip'], $_POST['passwordHashSecondInscrip']);
             $passwordHash = password_hash($passwordHash, PASSWORD_DEFAULT);
         }
 
@@ -255,6 +255,6 @@ class Controller {
     }
 
     public function checkEmail($email) {
-        return filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL);
+        return filter_var($_POST['mailInscrip'], FILTER_VALIDATE_EMAIL);
     }
 }
